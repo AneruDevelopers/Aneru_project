@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">     
 </head>
 <body>
-    <div class="l-wrapper_3">
-        <div class="l-header-top_3">
+    <div class="l-wrapper_detalhes">
+        <div class="l-header-top_detalhes">
                 <div class="redesSociais">
                         <ul class="listaRedes">
                             <li class="celulaListaRedes">
@@ -78,7 +78,7 @@
                 </form>
             </div>    
         </div>
-        <div class="l-header_3" id="headerSticky">
+        <div class="l-header_detalhes" id="headerSticky">
                 <ul class="usuarioHeader">
                 <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php preco_total(); ?> / <?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
                     <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
             </div>
-        <div class="l-main_3">
+        <div class="l-main_detalhes-1">
         <?php carrinho(); ?>
     <?php
 
@@ -171,9 +171,6 @@
         while ($row_prod = mysqli_fetch_array($run_prod)):
             
             $prod_id = $row_prod['produto_id'];
-            $prod_nome = $row_prod['produto_nome'];
-            $prod_preco = $row_prod['produto_preco'];
-            $prod_desc = $row_prod['produto_desc'];
             $prod_img = $row_prod['produto_img'];
            
        
@@ -187,44 +184,51 @@
             $aux .= 's=5&';
             $aux .= 't=J';
      
-            echo "<div class='produtoThumbDetalhe'>
-            
-                <h2 class='nomeProdutoDetalhe'>$prod_nome</h2>
+            echo "<div class='produtoThumbImg'>
 
                 <img class='imagemThumbDetalhe' src='admin_area/imagens_produtos/$prod_img' width='500' height='500'>
 
-                <p class='precoProdutoDetalhe'><b> R$ $prod_preco </b></p>
-
-                <a class='linkbtnDet1' href='index.php?id_prod=$prod_id' style='float:right;'><button class='btnAddCartDetalhe'><i class='fas fa-cart-plus'></i> Adiconar</button></a>
-                <a class='linkbtnDet2' href='#' style='float:right;'><button class='btnAddCartDetalhe'><i class='far fa-credit-card'></i> Comprar</button></a>
-                <a class='linkbtnDet3' href='index.php' style='float:right;'><button class='btnAddCartDetalhe'><i class='fas fa-arrow-left'></i> Voltar</button></a>
-
             </div>";
+            endwhile;
+            endif;
     ?>
         </div>
-        <div class='sub_main3'>
-            <h3 class='titleQrCode'>AneruScan<i class="far fa-copyright"></i></h3>
-            <div class='elementQrCode'>
-                <img class='qrCode' src="<?php echo $aux; ?>"/>
-            </div>
+        <div class='l-main_detalhes-2'>
             <?php
 
-                endwhile;
-                endif;
-        
+                if(isset($_GET['id_prod'])):
+
+                    $produto_id = $_GET['id_prod'];
+            
+                    $busca_prod = "SELECT * FROM produtos WHERE produto_id = $produto_id";
+            
+                    $run_prod = mysqli_query($con, $busca_prod);
+            
+                    while ($row_prod = mysqli_fetch_array($run_prod)):
+                        
+                        $prod_id = $row_prod['produto_id'];
+                        $prod_nome = $row_prod['produto_nome'];
+                        $prod_preco = $row_prod['produto_preco'];
+                        $prod_desc = $row_prod['produto_desc'];
+
+                        echo "<div class='produtoThumbDetalhe'>
+                            
+                            <h2 class='nomeProdutoDetalhe'>$prod_nome</h2>
+                            <p class='precoProdutoDetalhe'><b> R$ $prod_preco </b></p>
+                            <div class='btnsDet'>
+                                <a class='linkBtnDet linkBtnDet1' href='index.php'><button class='btnAddCartDetalhe'><i class='fas fa-arrow-left'></i> Voltar</button></a>
+                                <a class='linkBtnDet linkBtnDet2' href='#'><button class='btnAddCartDetalhe'><i class='far fa-credit-card'></i> Comprar</button></a>
+                                <a class='linkBtnDet linkBtnDet3' href='index.php?id_prod=$prod_id'><button class='btnAddCartDetalhe'><i class='fas fa-cart-plus'></i> Adiconar</button></a>
+                            </div>
+
+                        </div>";
+                    endwhile;
+                    endif;
             ?>
-            <div class='elementTxtQrCode'>
-                <p class='txtQrCode'>Não perca tempo e utilize o <b>AneruScan</b> para <b>compartilhar</b> este produto com seus amigos e salve ele no seu dispositivo para não perdê-lo de vista!</p>
-            </div>
-            <div class='logosRedesSociaisQrCode'>
-                <i class="fab fa-whatsapp"></i>
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-snapchat-ghost"></i>
-                <i class="fab fa-google-plus-g"></i>
-            </div>
         </div>
-        <div class='sub_main3_1'>
-            <h3 class='titleQrCode'>Detalhes <i class="far fa-list-alt"></i></h3>
+        <div class='l-sub-main_detalhes-1'>
+            <hr class='linhaQrCode'>
+            <h3 class='titleQrCode'>Detalhes do Produto</h3>
             <?php
 
             if(isset($_GET['id_prod'])):
@@ -246,7 +250,23 @@
                 
             ?>
         </div>
-        <div class='l-footer_3'>
+        <div class='l-sub-main_detalhes-2'>
+            <hr class='linhaQrCode'>
+            <h3 class='titleQrCode'>AneruScan<i class="far fa-copyright"></i></h3>
+            <div class='elementQrCode'>
+                <img class='qrCode' src="<?php echo $aux; ?>"/>
+            </div>
+            <div class='elementTxtQrCode'>
+                <p class='txtQrCode'>Não perca tempo e utilize o <b>AneruScan</b> para <b>compartilhar</b> este produto com seus amigos e salve ele no seu dispositivo para não perdê-lo de vista!</p>
+            </div>
+            <div class='logosRedesSociaisQrCode'>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-snapchat-ghost"></i>
+                <i class="fab fa-google-plus-g"></i>
+            </div>
+        </div>
+        <div class='l-footer_detalhes'>
             
         </div>
     </div>
