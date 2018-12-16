@@ -1050,11 +1050,12 @@ body {
     
     .l-wrapper_3 {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 8rem 5rem 50rem 25rem;
+        grid-template-rows: 8rem 5rem auto auto 25rem;
         grid-template-areas:
             "header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3 header-top_3"
             "header_3 header_3 header_3 header_3 header_3 header_3 header_3 header_3 header_3 header_3 header_3 header_3"
             "main_3 main_3 main_3 main_3 main_3 main_3 main_3 main_3 main_3 main_3 main_3 main_3"
+            "sub_main3 sub_main3 sub_main3 sub_main3 sub_main3 sub_main3 sub_main3_1 sub_main3_1 sub_main3_1 sub_main3_1 sub_main3_1 sub_main3_1"
             "footer_3 footer_3 footer_3 footer_3 footer_3 footer_3 footer_3 footer_3 footer_3 footer_3 footer_3 footer_3"
             ;
     }
@@ -1109,13 +1110,23 @@ body {
     .l-main_3 {
         grid-area: main_3;
         background-color: #ffffff;
-        position: relative;
+    }
+
+    .sub_main3 {
+        grid-area: sub_main3;
+        background: #ffffff;
+        border: #82ff05 solid 3px;
+    }
+
+    .sub_main3_1 {
+        grid-area: sub_main3_1;
+        background: #ffffff;
+        border: #82ff05 solid 3px;
     }
 
     .l-footer_3 {
         grid-area: footer_3;
-        background-color: #00cfd0;
-        position: relative;
+        background: #00cfd0;
     }
 
     .produtoThumbDetalhe {
@@ -1201,6 +1212,72 @@ body {
     .descriptionSelf {
         font-family: 'Titillium Web', sans-serif;
         font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .productDescription {
+        position: relative;
+        border: none;
+        left: 0;
+        width: 50%;
+    }
+
+    .elementQrCode {
+        float: left;
+    }
+
+    .titleQrCode {
+        font-family: 'Titillium Web', sans-serif;
+        text-align: center;
+        font-size: 2rem;
+        height: 4rem;
+        margin-top: 0;
+        margin-bottom: .5rem;
+        background: rgba(130,255,5,1);
+        background: -moz-linear-gradient(top, rgba(130,255,5,1) 0%, rgba(255,255,255,1) 105%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(130,255,5,1)), color-stop(105%, rgba(255,255,255,1)));
+        background: -webkit-linear-gradient(top, rgba(130,255,5,1) 0%, rgba(255,255,255,1) 105%);
+        background: -o-linear-gradient(top, rgba(130,255,5,1) 0%, rgba(255,255,255,1) 105%);
+        background: -ms-linear-gradient(top, rgba(130,255,5,1) 0%, rgba(255,255,255,1) 105%);
+        background: linear-gradient(to bottom, rgba(130,255,5,1) 0%, rgba(255,255,255,1) 105%);
+        color: #2f3640;
+    }
+
+    .fa-copyright {
+        font-size: .5rem;
+        position: relative;
+        top: -15px;
+    }
+
+    .elementTxtQrCode {
+        float: left;
+        width: 60%;
+        position: relative;
+    }
+
+    .txtQrCode {
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 1.2rem;
+        position: relative;
+        top: 1rem;
+        margin: 0;
+    }
+
+    .logosRedesSociaisQrCode {
+        background: #ffffff;
+        position: relative;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        width: 30%;
+        top: 3rem;
+        left: 4.5rem;
+        font-size: 2rem;
+    }
+
+    .txtDescProd {
+        font-family: 'Titillium Web', sans-serif;
+        position: relative;
         text-align: center;
     }
 

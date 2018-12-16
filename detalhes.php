@@ -5,9 +5,6 @@
     include("functions/main.php");
 
 ?>
-<?php
-    header('Content-Type: text/html; charset=iso-8859-1');
-?>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -83,7 +80,7 @@
         </div>
         <div class="l-header_3" id="headerSticky">
                 <ul class="usuarioHeader">
-                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href=""><i class="fas fa-shopping-cart"></i></a></li>
+                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php preco_total(); ?> / <?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
                     <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
@@ -160,6 +157,7 @@
                 </div>
             </div>
         <div class="l-main_3">
+        <?php carrinho(); ?>
     <?php
 
     if(isset($_GET['id_prod'])):
@@ -201,21 +199,55 @@
                 <a class='linkbtnDet2' href='#' style='float:right;'><button class='btnAddCartDetalhe'><i class='far fa-credit-card'></i> Comprar</button></a>
                 <a class='linkbtnDet3' href='index.php' style='float:right;'><button class='btnAddCartDetalhe'><i class='fas fa-arrow-left'></i> Voltar</button></a>
 
-            </div>
-
- ";
+            </div>";
     ?>
-<div class='productDescription' style=' border: 0.5px solid #000;'>
-            <img src="<?php echo $aux; ?>"/>
         </div>
-    <?php
+        <div class='sub_main3'>
+            <h3 class='titleQrCode'>AneruScan<i class="far fa-copyright"></i></h3>
+            <div class='elementQrCode'>
+                <img class='qrCode' src="<?php echo $aux; ?>"/>
+            </div>
+            <?php
 
-       endwhile;
-    endif;
-    ?>         
-        </div>
+                endwhile;
+                endif;
         
+            ?>
+            <div class='elementTxtQrCode'>
+                <p class='txtQrCode'>Não perca tempo e utilize o <b>AneruScan</b> para <b>compartilhar</b> este produto com seus amigos e salve ele no seu dispositivo para não perdê-lo de vista!</p>
+            </div>
+            <div class='logosRedesSociaisQrCode'>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-snapchat-ghost"></i>
+                <i class="fab fa-google-plus-g"></i>
+            </div>
+        </div>
+        <div class='sub_main3_1'>
+            <h3 class='titleQrCode'>Detalhes <i class="far fa-list-alt"></i></h3>
+            <?php
 
+            if(isset($_GET['id_prod'])):
+
+                $produto_id = $_GET['id_prod'];
+        
+                $busca_prod = "SELECT * FROM produtos WHERE produto_id = $produto_id";
+        
+                $run_prod = mysqli_query($con, $busca_prod);
+        
+                while ($row_prod = mysqli_fetch_array($run_prod)):
+                    
+                    $prod_desc = $row_prod['produto_desc'];
+
+                    echo "<p class='txtDescProd'>$prod_desc</p>";
+
+                endwhile;
+                endif;
+                
+            ?>
+        </div>
+        <div class='l-footer_3'>
+            
         </div>
     </div>
 </body>
