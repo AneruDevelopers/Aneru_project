@@ -1385,7 +1385,7 @@ body {
 
     .elementImgCart {
         position: relative;
-        left: 3rem;
+        left: 6rem;
         top: 1.5rem;
     }
 
@@ -1394,7 +1394,7 @@ body {
         width: 50%;
         margin-top: 0;
         margin-bottom: .5rem;
-        left: 9rem;
+        left: 12rem;
         top: -4rem;
     }
 
@@ -1402,7 +1402,7 @@ body {
         position: relative;
         width: 50%;
         margin-top: 0;
-        left: 9rem;
+        left: 12rem;
         top: -4rem;
         color: #e84118;
     }
@@ -1414,7 +1414,7 @@ body {
         padding-left: 30px;
         cursor: pointer;
         width: 6%;
-        left: 10.6%;
+        left: 14.1%;
         top: -4rem;
     }
     
@@ -1526,7 +1526,26 @@ body {
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
         position: relative;
         top: -2.8rem;
+        left: 2rem;
     }
+
+    .resultadoCart {
+        width: 90%;
+        font-family: 'Titillium Web', sans-serif;
+        background: #82ff05;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+    }
+
+    .subtotal {
+        position: relative;
+        left: 5rem;
+        font-size: 1.3rem;
+        padding: 5px 0;
+    }
+
+
 
     /* PAGINA ---> comofuncionamos_2.php */
     /* =============================== */

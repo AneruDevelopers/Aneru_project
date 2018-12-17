@@ -190,9 +190,13 @@
 
                                 $preco_unitario = $pp_preco['produto_preco'];
 
+                                $valor = array_sum($preco_produto);
+
+                                $total += $valor;
+
                     ?>
                     <div class='productDiv'>
-                        <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $img_produto;?>" width="80">
+                        <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $img_produto;?>" width="80" height='80'>
                         <p class='nomeProd'><b><?php echo $nome_produto; ?></b></p>
                         <p class='precoProd'><?php echo "R$".$preco_unitario; ?></p>
                         <label class="control control--checkbox">Remover
@@ -203,6 +207,9 @@
                         <hr class='linhaCart'>
                     </div>
                     <?php } } ?>
+                    <div class='resultadoCart'>
+                        <h5 class='subtotal'>Sub Total: <?php echo "R$".$total; ?></h5>
+                    </div>
                 </div>
             </form>
         </div>
