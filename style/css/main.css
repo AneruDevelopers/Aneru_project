@@ -1507,7 +1507,7 @@ body {
     .txtQtd {
         position: relative;
         float: right;
-        top: -7rem;
+        top: -8rem;
         right: 8rem;
         height: 2rem;
         font-family: 'Titillium Web', sans-serif;
@@ -1532,10 +1532,10 @@ body {
     .resultadoCart {
         width: 90%;
         font-family: 'Titillium Web', sans-serif;
-        background: #82ff05;
+        background: #ccc;
         margin-left: auto;
         margin-right: auto;
-        border-radius: 5px;
+        border-radius: 2px;
     }
 
     .subtotal {
@@ -1543,6 +1543,55 @@ body {
         left: 5rem;
         font-size: 1.3rem;
         padding: 5px 0;
+        width: 35%;
+    }
+
+    .finalBtnsCart {
+        position: relative;
+        display: inline-flex;
+        width: auto;
+        left: 32.9%;
+        margin-bottom: 2rem;
+    }
+
+    .btnCart {
+        padding: 5px 8px;
+        font-family: 'Titillium Web', sans-serif;
+        background: #2f3640;
+        border: none;
+        margin-left: 2rem;
+        font-size: 1rem;
+        color: #ffffff;
+        cursor: pointer;
+        border-radius: 2px;
+    }
+
+    .btnCart:hover {
+        color: #00cfd0;
+    }
+
+    .btnCart:hover > a {
+        color: #00cfd0;
+    }
+
+    .btnCartSpec {
+        font-family: 'Titillium Web', sans-serif;
+        background: #2f3640;
+        border: none;
+        font-size: 1rem;
+        padding: 5px 8px;
+        color: #ffffff;
+        cursor: pointer;
+        border-radius: 2px;
+    }
+
+    .btnCartSpec:hover {
+        color: #00cfd0;
+    }
+
+    .linkBtnFinalizar {
+        text-decoration: none;
+        color: #ffffff;
     }
 
 

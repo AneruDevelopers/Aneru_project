@@ -81,7 +81,7 @@
         </div>
         <div class="l-header" id="headerSticky">
                 <ul class="usuarioHeader">
-                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php preco_total(); ?> / <?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
                     <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
                 </ul>
                 <ul class="menuHeader clearfix">

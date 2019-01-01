@@ -2,6 +2,8 @@
 <!DOCTYPE>
 <?php
 
+    session_start();
+
     include("functions/main.php");
 
 ?>
@@ -80,7 +82,7 @@
         </div>
         <div class="l-header_carrinho" id="headerSticky">
                 <ul class="usuarioHeader">
-                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php preco_total(); ?> / <?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
+                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
                     <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
@@ -176,13 +178,17 @@
 
                             $pro_id = $p_preco['id_pro'];
 
+                            $pro_qtd = $p_preco['quant'];
+
                             $preco_pro = "SELECT * FROM produtos WHERE produto_id='$pro_id'";
 
                             $run_pro_preco = mysqli_query($con, $preco_pro);
 
                             while($pp_preco=mysqli_fetch_array($run_pro_preco)) {
 
-                                $preco_produto = array($pp_preco['produto_preco']);
+                                #$preco_produto = array($pp_preco['produto_preco']);
+
+                                $produto_id = $pp_preco['produto_id'];
 
                                 $nome_produto = $pp_preco['produto_nome'];
 
@@ -190,9 +196,14 @@
 
                                 $preco_unitario = $pp_preco['produto_preco'];
 
-                                $valor = array_sum($preco_produto);
+                                #$valor = array_sum($preco_produto);
 
-                                $total += $valor;
+                                #$total += $valor;
+
+                                $sub_total_preco = $preco_unitario * $pro_qtd;
+                                $preco_produto = array($sub_total_preco);
+                                $valores = array_sum($preco_produto);
+                                $total += $valores;
 
                     ?>
                     <div class='productDiv'>
@@ -200,18 +211,25 @@
                         <p class='nomeProd'><b><?php echo $nome_produto; ?></b></p>
                         <p class='precoProd'><?php echo "R$".$preco_unitario; ?></p>
                         <label class="control control--checkbox">Remover
-                            <input type="checkbox"/ name='remove[]'>
+                            <input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"><input type="hidden" name="product_adjust_id[]" value="<?php echo $pro_id; ?>">
                             <div class="control__indicator"></div>
                         </label>
-                        <input class='txtQtd' type='text' size='15' name='qtd' placeholder=' Quantidade'>
+                        <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $pro_qtd; ?>">
+
                         <hr class='linhaCart'>
                     </div>
                     <?php } } ?>
                     <div class='resultadoCart'>
                         <h5 class='subtotal'>Sub Total: <?php echo "R$".$total; ?></h5>
                     </div>
+                    <div class='finalBtnsCart'>
+                        <input class='btnCartSpec btnContinuar' type="submit" name="continuar" value="Voltar às Compras">
+                        <input class='btnCart btnAtualizar' type="submit" name="atualizar_cart" value="Atualizar Pedido">
+                        <button class='btnCart btnFinalizar'><a class='linkBtnFinalizar' href="checkout.php">Finalizar Compra</a></button>
+                    </div>
                 </div>
             </form>
+            
         </div>
         <div class='l-footer_carrinho'>
         
@@ -219,3 +237,35 @@
 </body>
 </body>
 </html>
+<?php
+
+            $ip = busca_ip();
+
+            if(isset($_POST['remove'])) {
+
+                if($_POST['remove'] != "") {
+
+                    foreach ($_POST['remove'] as $remove_id) {
+                        $deleta_produto = "DELETE FROM carrinho WHERE id_pro='$remove_id' AND end_ip='$ip'";
+                        $run_delete = mysqli_query($con, $deleta_produto);
+                        if($run_delete) {
+                            echo "<script>window.open('carrinho.php','_self')</script>";
+                        }
+                    }
+                }
+            } elseif ((isset($_POST['atualizar_cart']))) {
+                $i = 0;
+                $nova_qtd = $_POST['qtd'];
+                foreach($_POST['product_adjust_id'] as $pro_adj_id) {
+                    $nova_qtd = $_POST['qtd'][$i];
+                    $atualiza_qtd_produto = "UPDATE carrinho SET quant='$nova_qtd' WHERE end_ip='$ip' AND id_pro='$pro_adj_id'";
+                    $run_atualizacao = mysqli_query($con, $atualiza_qtd_produto);
+                    $i++;
+                }
+                echo "<script>window.location.href=window.location.href</script>";
+            } elseif (isset($_POST['continuar'])) {
+                    echo "<script>window.open('index.php','_self')</script>";
+            }
+
+                
+            ?>

@@ -42,7 +42,7 @@ if(mysqli_connect_errno()) {
             if(mysqli_num_rows($run_check)>0) {
                 echo "";
             } else {
-                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip) VALUES ('$pro_id','$ip')";
+                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','1')";
 
                 $run_pro = mysqli_query($con, $insere_pro);
 
