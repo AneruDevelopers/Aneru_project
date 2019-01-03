@@ -1,4 +1,4 @@
-/* Aneru - 2018 */
+/* MarketViser - 2018 */
 /* ============ */
 
 /* PAGE --> INDEX */
@@ -22,10 +22,11 @@ body {
 @media(min-width: 30em) and (max-width: 99.9em) {
     .l-wrapper {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 8rem 5rem 36rem 100rem 25rem;
+        grid-template-rows: 2.5rem 5rem 4rem 36rem 100rem 25rem;
         grid-template-areas:
             "header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top"
             "header header header header header header header header header header header header"
+            "header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom"
             "banner banner banner banner banner banner banner banner banner banner banner banner"
             "main main main main main main main main main main main main"
             "footer footer footer footer footer footer footer footer footer footer footer footer"
@@ -34,14 +35,22 @@ body {
 
     .l-header-top {
         grid-area: header-top;
-        background-color: #ffffff;
+        background-color: #2f3640;
         width: 100%;
         text-align: center;
     }
 
     .l-header {
         grid-area: header;
-        background-color: #2f3640;
+        background-color: #00cfd0;
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .l-header-bottom {
+        grid-area: header-bottom;
+        background-color: #e6e6e6;
         width: 100%;
         z-index: 1;
         top: 5rem;
@@ -51,9 +60,9 @@ body {
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: #2f3640;
-        z-index: 1;
-        height: 5rem;
+        background-color: #e6e6e6;
+        z-index: 2;
+        height: 4rem;
     }
 
     .after {
@@ -74,7 +83,7 @@ body {
         border-right: 30px solid transparent; 
         height: 0; 
         width: 30em; 
-        top: 5rem;
+        top: 4rem;
         left: 30%;
     }
 
@@ -100,139 +109,42 @@ body {
 
     /* Header Top */
 
+    .txtCupon {
+        color: #e6e6e6;
+        font-family: 'Titillium Web', sans-serif;
+        letter-spacing: .2rem;
+        position: relative;
+        top: -.6rem;
+    }
+
+    /* Header */
+
     .nomeEmpresa {
-        font-family: 'Expletus Sans Medium';
-        font-size: 2.8rem;
+        font-family: 'Maven Pro', sans-serif;
+        font-size: 2rem;
         position: relative;
         width: 20%;
-        margin-left: auto;
+        margin-left: 2rem;
         margin-right: auto;
-        top: -1.5rem;
+        top: -0rem;
     }
 
     .linkEmpresa {
         text-decoration: none;
-        color: #00cfd0;
+        color: #e6e6e6;
         padding: 2px;
-    }
-
-    .redesSociais {
-        position: relative;
-        width: 25%;
-        height: auto;
-        left: 2%;
-        top: 3rem;
-    }
-
-    .listaRedes {
-        position: relative;
-        width: 80%;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        transform: translateX(22%);
-    }
-
-    .celulaListaRedes {
-        list-style: none;
-    }
-
-    .linkListaRedes {
-        display: block;
-        position: relative;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        font-size: 15px;
-        text-align: center;
-        text-decoration: none;
-        color: #2f3640;
-        margin: 0 10px;
-        transition: 500ms;
-    }
-
-    .linkListaRedes > i {
-        position: relative;
-        top: .4rem;
-    }
-
-    .linkListaRedes > span {
-        position: absolute;
-        transition: transform 500ms;
-    }
-
-    .linkListaRedes > span:nth-child(1), .linkListaRedes > span:nth-child(3) {
-        width: 100%;
-        height: 2px;
-        background: #2f3640;
-    }
-
-    .linkListaRedes > span:nth-child(1) {
-        top: 0;
-        left: 0;
-        transform-origin: right;
-    }
-
-    .linkListaRedes:hover > span:nth-child(1) {
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 500ms;
-    }
-
-    .linkListaRedes > span:nth-child(3) {
-        bottom: 0;
-        right: 0;
-        transform-origin: left;
-    }
-
-    .linkListaRedes:hover > span:nth-child(3) {
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 500ms;
-    }
-
-    .linkListaRedes > span:nth-child(2), .linkListaRedes > span:nth-child(4) {
-        width: 2px;
-        height: 100%;
-        background: #2f3640;
-    }
-
-    .linkListaRedes > span:nth-child(2) {
-        top: 0;
-        left: 0;
-        transform: scaleY(0);
-        transform-origin: bottom;
-    }
-
-    .linkListaRedes:hover > span:nth-child(2) {
-        transform: scaleY(1);
-        transform-origin: top;
-        transition: transform 500ms;
-    }
-
-    .linkListaRedes > span:nth-child(4) {
-        top: 0;
-        right: 0;
-        transform: scaleY(0);
-        transform-origin: top;
-    }
-
-    .linkListaRedes:hover > span:nth-child(4) {
-        transform: scaleY(1);
-        transform-origin: bottom;
-        transition: transform 500ms;
     }
 
     .buscaBoxHeader {
         position: relative;
-        top: -6.4rem;
-        right: 6rem;
-        background: #2f3640;
+        top: -3.85rem;
+        background: #e6e6e6;
         height: 25px;
         border-radius: 40px;
         padding: 5px;
         width: 15rem;
-        float: right;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .formPesquisaHeader {
@@ -244,11 +156,11 @@ body {
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background: #ffffff;
+        background: #2f3640;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #2f3640;
+        color: #e6e6e6;
         cursor: pointer;
         text-decoration: none;
         border: none;
@@ -268,17 +180,63 @@ body {
         line-height: 25px;
         width: 13rem;
         float: left;
-        color: #ffffff;
+        color: #2f3640;
     }
 
-    /* Header */
+    .cidadeArmazem {
+        position: relative;
+        width: 20%;
+        top: -5.7rem;
+        left: 78%;
+    }
+
+    .cidadeArmazem > select {
+        background: none;
+        border: none;
+        font-family: 'Titillium Web', sans-serif;
+        position: relative;
+        top: -.3rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: none;
+        -ms-word-break: normal;
+        word-break: normal;
+        padding-right: 1rem;
+    }
+
+    .fa-globe-americas {
+        font-size: 1.5rem;
+    }
+
+    select::-ms-expand {
+        display: none;
+    }
+    
+    .cidadeArmazem:after {
+        content: '>';
+        font: 17px "Consolas", monospace;
+        color: #333;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: 3.2rem;
+        top: -.2rem;
+        padding: 0 0 2px;
+        position: absolute;
+        pointer-events: none;
+        font-size: 1.5rem;
+    }
+
+    /* Header-Bottom */
 
     .menuHeader {
         position: relative;
-        width: 30%;
+        width: 60%;
         margin: 0 0;
         padding: 0 0;
-        height: 5rem;
+        height: 4rem;
         font-family: 'Titillium Web', sans-serif;
         float: left;
     }
@@ -288,7 +246,7 @@ body {
         display: -webkit-inline-box;
         list-style: none;
         position: relative;
-        top: 0;
+        top: 0rem;
         height: 100%;
         text-align: center;
         line-height: 4.8rem;
@@ -297,12 +255,16 @@ body {
 
     .linkMenuHeader {
         text-decoration: none;
-        color: rgb(61, 236, 236);
+        color: #2f3640;
         height: 100%;
+        position: relative;
+        top: -.4rem;
     }
 
     .celulaMenuHeader:hover {
-        background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0,0,0,0.2);
+        color: #e6e6e6;
+        box-shadow: 0px -3px 2px 2px rgba(155, 154, 154, 0.2);
     }
 
     .modalMenuHeader {
@@ -310,9 +272,9 @@ body {
         position: relative;
         width: 100%;
         height: 25rem;
-        background: #82ff05;
+        background: #00cfd0;
         z-index: 99;
-        top: 5rem;
+        top: 4rem;
     }
 
     .categoriasMenu {
@@ -394,7 +356,7 @@ body {
         padding: 0 0;
         font-family: 'Titillium Web', sans-serif;
         float: right;
-        height: 5rem;
+        height: 4rem;
     }
 
     .celulaUsuaurioHeader {
@@ -411,17 +373,39 @@ body {
 
     .linkUsuaurioHeader {
         text-decoration: none;
-        color: rgb(61, 236, 236);
+        color: #2f3640;
         height: 100%;
+        position: relative;
+        top: -.2rem;
+    }
+
+    .fa-user-circle {
+        font-size: 1.5rem;
+    }
+
+    .fa-shopping-basket {
+        font-size: 1.5rem;
+        position: relative;
+        top: -.75rem;
+    }
+
+    .quantCart {
+        font-size: .8rem;
+        height: .5rem;
+        display: inline-flex;
+        top: -.7rem;
+        position: relative;
     }
 
     .celulaUsuaurioHeader:hover {
-        background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0,0,0,0.2);
+        color: #e6e6e6;
+        box-shadow: 0px -3px 2px 2px rgba(155, 154, 154, 0.2);
     }
 
     .buscaBox {
         position: fixed;
-        top: 6.2rem;
+        top: 5.2rem;
         left: 50%;
         transform: translate(-50%,-50%);
         background: #2f3640;
@@ -976,37 +960,6 @@ body {
         top: 5rem;
     }
 
-    .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: #2f3640;
-        z-index: 2;
-        height: 5rem;
-    }
-
-    .after {
-        position: relative;
-        width: 100%;
-        height: 0rem;
-        display: none;
-    }
-
-    .after::after {
-        content: '';
-        display: block;
-        position: fixed;
-        z-index: 1;
-        bottom: .6rem;
-        border-top: 2.5em solid #00cfd0; 
-        border-left: 30px solid transparent; 
-        border-right: 30px solid transparent; 
-        height: 0; 
-        width: 30em; 
-        top: 5rem;
-        left: 30%;
-    }
-
     .l-main_4 {
         grid-area: main_4;
         background-color: #ffffff;
@@ -1075,37 +1028,6 @@ body {
         width: 100%;
         z-index: 2;
         top: 5rem;
-    }
-
-    .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: #2f3640;
-        z-index: 2;
-        height: 5rem;
-    }
-
-    .after {
-        position: relative;
-        width: 100%;
-        height: 0rem;
-        display: none;
-    }
-
-    .after::after {
-        content: '';
-        display: block;
-        position: fixed;
-        z-index: 1;
-        bottom: .6rem;
-        border-top: 2.5em solid #00cfd0; 
-        border-left: 30px solid transparent; 
-        border-right: 30px solid transparent; 
-        height: 0; 
-        width: 30em; 
-        top: 5rem;
-        left: 30%;
     }
 
     .l-main_detalhes-1 {
@@ -1299,10 +1221,11 @@ body {
     
     .l-wrapper_carrinho {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 8rem 5rem auto 25rem;
+        grid-template-rows: 2.5rem 5rem 4rem auto 25rem;
         grid-template-areas:
             "header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top"
             "header header header header header header header header header header header header"
+            "header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom"
             "main main main main main main main main main main main main"
             "footer footer footer footer footer footer footer footer footer footer footer footer"
             ;
@@ -1310,49 +1233,24 @@ body {
 
     .l-header-top_carrinho {
         grid-area: header-top;
-        background-color: #ffffff;
+        background-color: #2f3640;
         width: 100%;
         text-align: center;
-        mix-blend-mode: multiply;
     }
 
     .l-header_carrinho {
-        grid-area: header;
-        background-color: #2f3640;
+        grid-area: header;;
+        background-color: #00cfd0;
         width: 100%;
+        text-align: center;
         z-index: 2;
-        top: 5rem;
     }
 
-    .sticky {
-        position: fixed;
-        top: 0;
+    .l-header-bottom_carrinho {
+        grid-area: header-bottom;
+        background-color: #e6e6e6;
         width: 100%;
-        background-color: #2f3640;
-        z-index: 2;
-        height: 5rem;
-    }
-
-    .after {
-        position: relative;
-        width: 100%;
-        height: 0rem;
-        display: none;
-    }
-
-    .after::after {
-        content: '';
-        display: block;
-        position: fixed;
         z-index: 1;
-        bottom: .6rem;
-        border-top: 2.5em solid #00cfd0; 
-        border-left: 30px solid transparent; 
-        border-right: 30px solid transparent; 
-        height: 0; 
-        width: 30em; 
-        top: 5rem;
-        left: 30%;
     }
 
     .l-main_carrinho {
@@ -1596,7 +1494,7 @@ body {
 
 
 
-    /* PAGINA ---> comofuncionamos_2.php */
+    /* PAGINA ---> comofuncionamos.php */
     /* =============================== */
 
     .l-wrapper_2 {
@@ -1605,60 +1503,36 @@ body {
     
     .l-wrapper_2 {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 8rem 5rem 65rem 25rem;
+        grid-template-rows: 2.5rem 5rem 4rem 65rem 25rem;
         grid-template-areas:
-            "header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2 header-top_2"
-            "header_2 header_2 header_2 header_2 header_2 header_2 header_2 header_2 header_2 header_2 header_2 header_2"
+            "header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top"
+            "header header header header header header header header header header header header"
+            "header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom"
             "main_2 main_2 main_2 main_2 main_2 main_2 main_2 main_2 main_2 main_2 main_2 main_2"
             "footer_2 footer_2 footer_2 footer_2 footer_2 footer_2 footer_2 footer_2 footer_2 footer_2 footer_2 footer_2"
             ;
     }
 
-    .l-header-top_2 {
-        grid-area: header-top_2;
-        background-color: #ffffff;
+    .l-header-top_comofuncionamos {
+        grid-area: header-top;
+        background-color: #2f3640;
         width: 100%;
         text-align: center;
-        mix-blend-mode: multiply;
     }
 
-    .l-header_2 {
-        grid-area: header_2;
-        background-color: #2f3640;
+    .l-header_comofuncionamos {
+        grid-area: header;
+        background-color: #00cfd0;
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+    }
+
+    .l-header-bottom_comofuncionamos {
+        grid-area: header-bottom;
+        background-color: #e6e6e6;
         width: 100%;
         z-index: 2;
-        top: 5rem;
-    }
-
-    .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: #2f3640;
-        z-index: 2;
-        height: 5rem;
-    }
-
-    .after {
-        position: relative;
-        width: 100%;
-        height: 0rem;
-        display: none;
-    }
-
-    .after::after {
-        content: '';
-        display: block;
-        position: fixed;
-        z-index: 1;
-        bottom: .6rem;
-        border-top: 2.5em solid #00cfd0; 
-        border-left: 30px solid transparent; 
-        border-right: 30px solid transparent; 
-        height: 0; 
-        width: 30em; 
-        top: 5rem;
-        left: 30%;
     }
 
     .l-main_2 {

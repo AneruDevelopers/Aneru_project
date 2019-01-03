@@ -13,105 +13,56 @@
     <link rel="stylesheet" type="text/css" href="style/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script type="text/javascript" src="js/main.js" async></script>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">             
 </head>
 <body>
     <div class="l-wrapper_2">
-        <div class="l-header-top_2">
-                <div class="redesSociais">
-                        <ul class="listaRedes">
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-google-plus-g"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">ANERU</a></h1>
+        <div class='l-header-top_comofuncionamos'>
+            <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
+        </div>
+        <div class="l-header_comofuncionamos">
+            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
             <div class="buscaBoxHeader" id="buscaBoxHeader">
-                <form class="formPesquisaHeader" method="get" action="resultado.php" enctype="multipart/form-data">
-                    <input class="pesquisaTxtHeader" type="text" name="" placeholder="Clique e pesquise">
+                <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
+                    <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder="Clique e pesquise">
                         <button class="pesquisaBtnHeader" type="submit" name="search">
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
-            </div>    
+            </div>     
         </div>
-        <div class="l-header_2" id="headerSticky">
-                <ul class="usuarioHeader">
-                        <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href=""><i class="fas fa-shopping-cart"></i></a></li>
-                        <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
+        <div class="l-header-bottom_comofuncionamos" id="headerSticky">
+        <ul class="usuarioHeader">
+                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
+                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#"><i class="far fa-user-circle"></i></a></li>
+                </ul>
+                <ul class="menuHeader clearfix">
+                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos.php">Como Funcionamos</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Atendimento</a></li>
+                </ul>
+                <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra();" onmouseout="javascript:esconde();">
+                    <div class="categoriasMenu">
+                    <ul class="listaCategoriasMenu">
+                        <?php buscarCategs(); ?>
                     </ul>
-                    <ul class="menuHeader clearfix">
-                        <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#">Menu</a>
-                            <!-- <ul class="sub-menu clearfix">
-                                <li class="celulaSubMenuHeader"><a class="linkSubMenuHeader" href="">Limpeza</a></li>
-                            </ul> -->
-                        </li>
-                        <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos_2.php">Como Funcionamos</a></li>
-                    </ul>
-                    <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra();" onmouseout="javascript:esconde();">
-                        <div class="categoriasMenu">
-                        <ul class="listaCategoriasMenu">
-                            <?php buscarCategs(); ?>
-                        </ul>
-                        <div id='linkMenu_1' class='linkMenuGeral linkMenu_1' onmouseover='javascript:showMenu1(); ' onmouseout='javascript:hideMenu1();'>
-                            <?php buscarSubCateg(1); ?>
-                        </div>
-                        <div id='linkMenu_2' class='linkMenuGeral linkMenu_2' onmouseover='javascript:showMenu2(); ' onmouseout='javascript:hideMenu2();'>
-                            <?php buscarSubCateg(2); ?>
-                        </div>
-                        <div id='linkMenu_3' class='linkMenuGeral linkMenu_3' onmouseover='javascript:showMenu3(); ' onmouseout='javascript:hideMenu3();'>
-                            <?php buscarSubCateg(3); ?>
-                        </div>
-                        <div id='linkMenu_4' class='linkMenuGeral linkMenu_4' onmouseover='javascript:showMenu4(); ' onmouseout='javascript:hideMenu4();'>
-                            <?php buscarSubCateg(4); ?>
-                        </div>
-                        <div id='linkMenu_5' class='linkMenuGeral linkMenu_5' onmouseover='javascript:showMenu5(); ' onmouseout='javascript:hideMenu5();'>
-                            <?php buscarSubCateg(5); ?>
-                        </div>
-                        </div>
+                    <div id='linkMenu_1' class='linkMenuGeral linkMenu_1' onmouseover='javascript:showMenu1(); ' onmouseout='javascript:hideMenu1();'>
+                        <?php buscarSubCateg(1); ?>
                     </div>
+                    <div id='linkMenu_2' class='linkMenuGeral linkMenu_2' onmouseover='javascript:showMenu2(); ' onmouseout='javascript:hideMenu2();'>
+                        <?php buscarSubCateg(2); ?>
+                    </div>
+                    <div id='linkMenu_3' class='linkMenuGeral linkMenu_3' onmouseover='javascript:showMenu3(); ' onmouseout='javascript:hideMenu3();'>
+                        <?php buscarSubCateg(3); ?>
+                    </div>
+                    <div id='linkMenu_4' class='linkMenuGeral linkMenu_4' onmouseover='javascript:showMenu4(); ' onmouseout='javascript:hideMenu4();'>
+                        <?php buscarSubCateg(4); ?>
+                    </div>
+                    <div id='linkMenu_5' class='linkMenuGeral linkMenu_5' onmouseover='javascript:showMenu5(); ' onmouseout='javascript:hideMenu5();'>
+                        <?php buscarSubCateg(5); ?>
+                    </div>
+                    </div>
+                </div>
             <div class="after" id="after"></div>
             <div class="buscaBox" id="buscaBox">
                 <form class="formPesquisa" method="get" action="resultado.php" enctype="multipart/form-data">

@@ -16,78 +16,34 @@
     <link rel="stylesheet" type="text/css" href="style/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script type="text/javascript" src="js/main.js" async></script>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">     
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">     
 </head>
 <body>
     <div class="l-wrapper_carrinho">
-        <div class="l-header-top_carrinho">
-                <div class="redesSociais">
-                        <ul class="listaRedes">
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-google-plus-g"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">ANERU</a></h1>
+        <div class='l-header-top_carrinho'>
+            <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
+        </div>
+        <div class="l-header_carrinho">
+            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
             <div class="buscaBoxHeader" id="buscaBoxHeader">
-                <form class="formPesquisaHeader" method="get" action="resultado.php" enctype="multipart/form-data">
-                    <input class="pesquisaTxtHeader" type="text" name="" placeholder="Clique e pesquise">
+                <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
+                    <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder="Clique e pesquise">
                         <button class="pesquisaBtnHeader" type="submit" name="search">
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
             </div>    
         </div>
-        <div class="l-header_carrinho" id="headerSticky">
+        <div class="l-header-bottom_carrinho" id="headerSticky">
                 <ul class="usuarioHeader">
-                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
-                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
+                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
+                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#"><i class="far fa-user-circle"></i></a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
-                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#">Menu</a></li>
-                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos_2.php">Como Funcionamos</a></li>
+                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos.php">Como Funcionamos</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Atendimento</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Cupons</a></li>
                 </ul>
                 <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();">
                     <div class="categoriasMenu">

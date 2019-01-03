@@ -77,7 +77,7 @@ if(mysqli_connect_errno()) {
             $conta_itens = mysqli_num_rows($run_itens);
         }
 
-        echo "$conta_itens";
+        echo "<p class='quantCart'>".$conta_itens."</p>";
     }
 
     function preco_total() {

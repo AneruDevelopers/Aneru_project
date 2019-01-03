@@ -8,68 +8,22 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Aneru</title>
+    <title>MarketViser</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style/css/main.css" />  
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">             
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">             
     <link rel="stylesheet" href="OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="OwlCarousel2-2.3.4\dist\assets\owl.theme.default.min.css" type="text/css">
     <script type="text/javascript" src="js/main.js" async></script>
 </head>
 <body>
     <div class="l-wrapper">
-        <div class="l-header-top">
-                <div class="redesSociais">
-                        <ul class="listaRedes">
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-google-plus-g"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">ANERU</a></h1>
+        <div class='l-header-top'>
+            <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
+        </div>
+        <div class="l-header">
+            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
             <div class="buscaBoxHeader" id="buscaBoxHeader">
                 <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
                     <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder="Clique e pesquise">
@@ -77,16 +31,24 @@
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
+            </div>
+            <div class="cidadeArmazem">
+                <i class="fas fa-globe-americas"></i>
+                <select name="cidadeArmazem" id="cidadeArmazem">
+                    <option>Selecione o armazém</option>
+                </select>
             </div>    
         </div>
-        <div class="l-header" id="headerSticky">
+        <div class="l-header-bottom" id="headerSticky">
                 <ul class="usuarioHeader">
-                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
-                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
+                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
+                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#"><i class="far fa-user-circle"></i></a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
-                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#">Menu</a></li>
-                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos_2.php">Como Funcionamos</a></li>
+                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos.php">Como Funcionamos</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Atendimento</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#"><i class="fas fa-ticket-alt"></i> Cupons</a></li>
                 </ul>
                 <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();">
                     <div class="categoriasMenu">
@@ -119,7 +81,6 @@
                         </button>
                 </form>
             </div>
-            
         </div>
         <div class="l-banner">
                 <div id="modal" class="modal">
