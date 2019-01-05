@@ -1,7 +1,9 @@
+
 <!DOCTYPE>
 <?php
 
     session_start();
+
     include("functions/main.php");
 
 ?>
@@ -9,21 +11,19 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MarketViser</title>
+    <title>Aneru</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style/css/main.css" />  
+    <link rel="stylesheet" type="text/css" href="style/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">             
-    <link rel="stylesheet" href="OwlCarousel2-2.3.4\dist\assets\owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="OwlCarousel2-2.3.4\dist\assets\owl.theme.default.min.css" type="text/css">
     <script type="text/javascript" src="js/main.js" async></script>
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">     
 </head>
 <body>
-    <div class="l-wrapper">
-        <div class='l-header-top'>
+    <div class="l-wrapper_carrinho">
+        <div class='l-header-top_carrinho'>
             <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
         </div>
-        <div class="l-header">
+        <div class="l-header_carrinho">
             <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
             <div class="buscaBoxHeader" id="buscaBoxHeader">
                 <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
@@ -32,40 +32,18 @@
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
-            </div>
-            <div class="cidadeArmazem">
-                <i class="fas fa-globe-americas"></i>
-                <select name="cidadeArmazem" id="cidadeArmazem">
-                    <option>Selecione o armazém</option>
-                    <?php
-                                
-                    $buscar_armazem = "SELECT * FROM armazens";
-
-                    $run_arm = mysqli_query($con, $buscar_armazem);
-
-                    while ($row_arms = mysqli_fetch_array($run_arm)) {
-
-                        $id_armazem = $row_arms['armazem_id'];
-                        $nome_armazem = $row_arms['armazem_cidade'];
-                        $estado_armazem = $row_arms['armazem_estado'];
-
-                        echo "<option value='$id_armazem'>$nome_armazem - $estado_armazem</option>";
-                    }
-
-                ?>
-                </select>
             </div>    
         </div>
-        <div class="l-header-bottom" id="headerSticky">
+        <div class="l-header-bottom_carrinho" id="headerSticky">
                 <ul class="usuarioHeader">
-                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
+                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
                     <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#"><i class="far fa-user-circle"></i></a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
                     <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
                     <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos.php">Como Funcionamos</a></li>
                     <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Atendimento</a></li>
-                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#"><i class="fas fa-ticket-alt"></i> Cupons</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Cupons</a></li>
                 </ul>
                 <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();">
                     <div class="categoriasMenu">
@@ -91,15 +69,13 @@
                 </div>
             <div class="after" id="after"></div>
             <div class="buscaBox" id="buscaBox">
-                <form class="formPesquisa" method="get" action="resultados.php" enctype="multipart/form-data">
-                    <input class="pesquisaTxt" type="text" name="buscaBarra" placeholder="Clique e pesquise">
+                <form class="formPesquisa" method="get" action="resultado.php" enctype="multipart/form-data">
+                    <input class="pesquisaTxt" type="text" name="" placeholder="Clique e pesquise">
                         <button class="pesquisaBtn" type="submit" name="search">
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
             </div>
-        </div>
-        <div class="l-banner">
                 <div id="modal" class="modal">
                     <div class="modal-content">
                             <span id="buttonclose" class="close">&times;</span>
@@ -137,102 +113,115 @@
                         </form>
                     </div>
                 </div>
-                <div class="slideshow-container">
+            </div>
+        <div class="l-main_carrinho">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class='elementCarrinho'>
+                    <h2 class='titleCarrinho'>RESUMO DO PEDIDO</h2>
+                    <?php
 
-                        <div class="mySlides fade">
-                            <div class="numbertext">1 / 3</div>
-                            <img class="imgSlide" src="img/ecommerce.jpg">
-                            <div class="divBtnDentroSlide">
-                                <!-- <button class="btnDentroSlide"><a class="linkBtnDentroSlide" href="#">Compre já!</a></button> -->
-                            </div>
-                        </div>
-                    
-                        <div class="mySlides fade">
-                            <div class="numbertext">2 / 3</div>
-                            <img class="imgSlide" src="img/computador.jpg">
-                            <div class="divBtnDentroSlide">
-                                <!-- <button class="btnDentroSlide"><a class="linkBtnDentroSlide" href="#">Compre já!</a></button> -->
-                            </div>
-                        </div>
-                    
-                        <div class="mySlides fade">
-                            <div class="numbertext">3 / 3</div>
-                            <img class="imgSlide" src="img/shopping.jpg">
-                            <div class="divBtnDentroSlide">
-                                <!-- <button class="btnDentroSlide"><a class="linkBtnDentroSlide" href="#">Compre já!</a></button> -->
-                            </div>
-                        </div>
-                    
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                    
-                      </div>
-                      <br>
-                    
-                      <div class="dotSlide" style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
+                        $total = 0;
+
+                        global $con;
+
+                        $ip = busca_ip();
+
+                        $preco_select = "SELECT * FROM carrinho WHERE end_ip='$ip'";
+
+                        $run_preco = mysqli_query($con, $preco_select);
+
+                        while($p_preco=mysqli_fetch_array($run_preco)) {
+
+                            $pro_id = $p_preco['id_pro'];
+
+                            $pro_qtd = $p_preco['quant'];
+
+                            $preco_pro = "SELECT * FROM produtos WHERE produto_id='$pro_id'";
+
+                            $run_pro_preco = mysqli_query($con, $preco_pro);
+
+                            while($pp_preco=mysqli_fetch_array($run_pro_preco)) {
+
+                                #$preco_produto = array($pp_preco['produto_preco']);
+
+                                $produto_id = $pp_preco['produto_id'];
+
+                                $nome_produto = $pp_preco['produto_nome'];
+
+                                $img_produto = $pp_preco['produto_img'];
+
+                                $preco_unitario = $pp_preco['produto_preco'];
+
+                                #$valor = array_sum($preco_produto);
+
+                                #$total += $valor;
+
+                                $sub_total_preco = $preco_unitario * $pro_qtd;
+                                $preco_produto = array($sub_total_preco);
+                                $valores = array_sum($preco_produto);
+                                $total += $valores;
+
+                    ?>
+                    <div class='productDiv'>
+                        <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $img_produto;?>" width="80" height='80'>
+                        <p class='nomeProd'><b><?php echo $nome_produto; ?></b></p>
+                        <p class='precoProd'><?php echo "R$".$preco_unitario; ?></p>
+                        <label class="control control--checkbox">Remover
+                            <input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"><input type="hidden" name="product_adjust_id[]" value="<?php echo $pro_id; ?>">
+                            <div class="control__indicator"></div>
+                        </label>
+                        <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $pro_qtd; ?>">
+
+                        <hr class='linhaCart'>
                     </div>
-        </div>
-        <div class="l-main">
-            <?php carrinho(); ?>
-            <h2 class="tituloOfertas">OFERTAS IMPERDÍVEIS!</h2>
-            <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
-            <?php
-                $product_array = $db_handle->runQuery("SELECT * FROM produtos ORDER BY RAND() LIMIT 0,12");
-                if (!empty($product_array)) { 
-                    foreach($product_array as $key=>$value){
-            ?>
-                <div class='produto_thumb'>
-                    <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["produto_id"]; ?>">
-                        <a href='detalhes.php?id_prod=<?php echo $product_array[$key]["produto_id"]; ?>'>
-                            <img class="imagemThumb" src="admin_area/imagens_produtos/<?php echo $product_array[$key]["produto_img"]; ?>"  width="180" height="180">
-                            <div class="product-tile-footer">
-                            <h4 class='nomeProduto'><?php echo $product_array[$key]["produto_nome"]; ?>
-                        </a>
-                        <p class='precoProduto'><?php echo "R$".$product_array[$key]["produto_preco"]; ?></p>
-                        <div class="cart-action"><input type="text" class="productQtd" name="quantity" value="1" size="2" /><a class='linkBtnAddCart' href='index.php?add_carrinho=' style='float:right;'><button type="submit" class='btnAddCart'><i class='fas fa-cart-plus'></i></button></a></div>       
+                    <?php } } ?>
+                    <div class='resultadoCart'>
+                        <h5 class='subtotal'>Sub Total: <?php echo "R$".$total; ?></h5>
                     </div>
-                    </form>
+                    <div class='finalBtnsCart'>
+                        <input class='btnCartSpec btnContinuar' type="submit" name="continuar" value="Voltar às Compras">
+                        <input class='btnCart btnAtualizar' type="submit" name="atualizar_cart" value="Atualizar Pedido">
+                        <button class='btnCart btnFinalizar'><a class='linkBtnFinalizar' href="checkout.php">Finalizar Compra</a></button>
+                    </div>
                 </div>
-            <?php
-                    }
-                }
-            ?>
-            </div>
-            <h2 class="tituloOfertas tOff2">O NATAL CHEGOU!</h2>
-            <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
-                
-            </div>
+            </form>
+            
         </div>
-        <div class="l-footer">            
-    
+        <div class='l-footer_carrinho'>
+        
         </div>
-    </div>
-    <script src="OwlCarousel2-2.3.4\docs_src\assets\vendors\jquery.min.js" type="text/javascript"></script>
-    <script src="OwlCarousel2-2.3.4\dist\owl.carousel.js" type="text/javascript"></script>
-    <script type="text/javascript">
-    
-        $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-            loop:false,
-            margin:10,
-            nav:true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:3
-                },
-                1000:{
-                    items:6
-                }
-            }
-        })
-        });
-    
-    </script>
+</body>
 </body>
 </html>
+<?php
+
+            $ip = busca_ip();
+
+            if(isset($_POST['remove'])) {
+
+                if($_POST['remove'] != "") {
+
+                    foreach ($_POST['remove'] as $remove_id) {
+                        $deleta_produto = "DELETE FROM carrinho WHERE id_pro='$remove_id' AND end_ip='$ip'";
+                        $run_delete = mysqli_query($con, $deleta_produto);
+                        if($run_delete) {
+                            echo "<script>window.open('carrinho.php','_self')</script>";
+                        }
+                    }
+                }
+            } elseif ((isset($_POST['atualizar_cart']))) {
+                $i = 0;
+                $nova_qtd = $_POST['qtd'];
+                foreach($_POST['product_adjust_id'] as $pro_adj_id) {
+                    $nova_qtd = $_POST['qtd'][$i];
+                    $atualiza_qtd_produto = "UPDATE carrinho SET quant='$nova_qtd' WHERE end_ip='$ip' AND id_pro='$pro_adj_id'";
+                    $run_atualizacao = mysqli_query($con, $atualiza_qtd_produto);
+                    $i++;
+                }
+                echo "<script>window.location.href=window.location.href</script>";
+            } elseif (isset($_POST['continuar'])) {
+                    echo "<script>window.open('index.php','_self')</script>";
+            }
+
+                
+            ?>

@@ -119,68 +119,50 @@
                 <div class='elementCarrinho'>
                     <h2 class='titleCarrinho'>RESUMO DO PEDIDO</h2>
                     <?php
-
-                        $total = 0;
-
-                        global $con;
-
-                        $ip = busca_ip();
-
-                        $preco_select = "SELECT * FROM carrinho WHERE end_ip='$ip'";
-
-                        $run_preco = mysqli_query($con, $preco_select);
-
-                        while($p_preco=mysqli_fetch_array($run_preco)) {
-
-                            $pro_id = $p_preco['id_pro'];
-
-                            $pro_qtd = $p_preco['quant'];
-
-                            $preco_pro = "SELECT * FROM produtos WHERE produto_id='$pro_id'";
-
-                            $run_pro_preco = mysqli_query($con, $preco_pro);
-
-                            while($pp_preco=mysqli_fetch_array($run_pro_preco)) {
-
-                                #$preco_produto = array($pp_preco['produto_preco']);
-
-                                $produto_id = $pp_preco['produto_id'];
-
-                                $nome_produto = $pp_preco['produto_nome'];
-
-                                $img_produto = $pp_preco['produto_img'];
-
-                                $preco_unitario = $pp_preco['produto_preco'];
-
-                                #$valor = array_sum($preco_produto);
-
-                                #$total += $valor;
-
-                                $sub_total_preco = $preco_unitario * $pro_qtd;
-                                $preco_produto = array($sub_total_preco);
-                                $valores = array_sum($preco_produto);
-                                $total += $valores;
-
+                    if(isset($_SESSION["cart_item"])){
+                        $total_quantity = 0;
+                        $total_price = 0;
                     ?>
-                    <div class='productDiv'>
-                        <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $img_produto;?>" width="80" height='80'>
-                        <p class='nomeProd'><b><?php echo $nome_produto; ?></b></p>
-                        <p class='precoProd'><?php echo "R$".$preco_unitario; ?></p>
-                        <label class="control control--checkbox">Remover
-                            <input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"><input type="hidden" name="product_adjust_id[]" value="<?php echo $pro_id; ?>">
-                            <div class="control__indicator"></div>
-                        </label>
-                        <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $pro_qtd; ?>">
+                    <div class="colunasCart">
+                        <h4 class="colmI">PREÇO UNITÁRIO</h4>
+                        <h4 class="colmII">PREÇO FINAL</h4>
+                        <h4 class="colmIII">QUANTIDADE</h4>
+                    </div>	
+                    <hr class='linhaCols'>
+                    <?php		
+                        foreach ($_SESSION["cart_item"] as $item){
+                            $item_price = $item["quantity"]*$item["produto_preco"];
+                            ?>
 
-                        <hr class='linhaCart'>
+                                <div class='productDiv'>
+                                    <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $item["produto_img"]; ?>" width="80" height='80'>
+                                    <p class='nomeProd'><b><?php echo $item["produto_nome"]; ?></b></p>
+                                    <p class='precoProdUnit'><?php echo "R$ ".$item["produto_preco"]; ?></p>
+                                    <p class='precoProd'><?php echo "R$ ". number_format($item_price,2); ?></p>
+                                    <a href="carrinho.php?action=remove&code=<?php echo $item["produto_id"]; ?>" class="btnRemoveAction">Remover</a>
+                                    <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $item["quantity"]; ?>">
+                                    <hr class='linhaCart'>
+                                </div>
+                            <?php
+                                $total_quantity += $item["quantity"];
+                                $total_price += ($item["produto_preco"]*$item["quantity"]);
+                            }
+                            ?>
                     </div>
-                    <?php } } ?>
                     <div class='resultadoCart'>
-                        <h5 class='subtotal'>Sub Total: <?php echo "R$".$total; ?></h5>
+                        <h5 class='subtotal'>Sub Total: <?php echo "R$ ".number_format($total_price, 2); ?></h5>
+                        <h5 class='totalQtd'>Total Itens: <?php echo $total_quantity; ?></h5>
                     </div>
+                    <?php
+                        } else {
+                    ?>
+                    <div class="semRegistros">Seu carrino está vazio!!!</div>
+                    <?php 
+                        }
+                    ?>
                     <div class='finalBtnsCart'>
-                        <input class='btnCartSpec btnContinuar' type="submit" name="continuar" value="Voltar às Compras">
-                        <input class='btnCart btnAtualizar' type="submit" name="atualizar_cart" value="Atualizar Pedido">
+                        <a href="index.php" class='btnCartSpec btnContinuar' name="continuar">Voltar às Compras</a>
+                        <a class='btnCart btnAtualizar' id="btnEmpty" href="carrinho.php?action=empty">Esvaziar Carrinho</a>
                         <button class='btnCart btnFinalizar'><a class='linkBtnFinalizar' href="checkout.php">Finalizar Compra</a></button>
                     </div>
                 </div>
@@ -193,35 +175,3 @@
 </body>
 </body>
 </html>
-<?php
-
-            $ip = busca_ip();
-
-            if(isset($_POST['remove'])) {
-
-                if($_POST['remove'] != "") {
-
-                    foreach ($_POST['remove'] as $remove_id) {
-                        $deleta_produto = "DELETE FROM carrinho WHERE id_pro='$remove_id' AND end_ip='$ip'";
-                        $run_delete = mysqli_query($con, $deleta_produto);
-                        if($run_delete) {
-                            echo "<script>window.open('carrinho.php','_self')</script>";
-                        }
-                    }
-                }
-            } elseif ((isset($_POST['atualizar_cart']))) {
-                $i = 0;
-                $nova_qtd = $_POST['qtd'];
-                foreach($_POST['product_adjust_id'] as $pro_adj_id) {
-                    $nova_qtd = $_POST['qtd'][$i];
-                    $atualiza_qtd_produto = "UPDATE carrinho SET quant='$nova_qtd' WHERE end_ip='$ip' AND id_pro='$pro_adj_id'";
-                    $run_atualizacao = mysqli_query($con, $atualiza_qtd_produto);
-                    $i++;
-                }
-                echo "<script>window.location.href=window.location.href</script>";
-            } elseif (isset($_POST['continuar'])) {
-                    echo "<script>window.open('index.php','_self')</script>";
-            }
-
-                
-            ?>

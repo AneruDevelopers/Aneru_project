@@ -131,7 +131,7 @@ body {
 
     .linkEmpresa {
         text-decoration: none;
-        color: #e6e6e6;
+        color: #ffffff;
         padding: 2px;
     }
 
@@ -872,29 +872,40 @@ body {
         color: black;
     }
 
+    .nomeProduto > a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .cart-action {
+        position: absolute;
+        top: 3.5rem;
+        margin: 0;
+    }
+
+    .productQtd {
+        position: relative;
+        top: 1.5rem;
+        left: 8rem;
+        height: 2rem;
+        border: #00cfd0 solid .1rem;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
     .precoProduto {
         font-family: 'Titillium Web', sans-serif;
         text-align: left;
         color: #e84118;
         position: absolute;
-        top: 17.5rem;
+        top: 3rem;
         margin: 0;
         font-weight: 300;
         font-size: 1rem;
     }
 
-    .linkDetalhes {
-        font-family: 'Titillium Web', sans-serif;
-        font-size: 1.2rem;
-        text-decoration: none;
-        color: #00cfd0;
-        position: absolute;
-        top: 19rem;
-    }
-
     .linkBtnAddCart {
         position: absolute;
-        top: 17.5rem;
+        top: .5rem;
         left: 10rem;
         margin: 0;
     }
@@ -1271,6 +1282,29 @@ body {
     .titleCarrinho {
         font-family: 'Titillium Web', sans-serif;
         text-align: center;
+        margin-top: 3rem;
+    }
+
+    .colunasCart {
+        position: relative;
+        width: 60%;
+        left: 39%;
+        display: inline-flex;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+    .colunasCart > h4 {
+        margin-left: 15%;
+    }
+
+    .linhaCols {
+        width: 85%;
+        border: 0;
+        height: .2rem;
+        position: relative;
+        top: 0rem;
+        background: #2f3640;
+        border-radius: 2px;
     }
 
     .productDiv {
@@ -1284,7 +1318,7 @@ body {
     .elementImgCart {
         position: relative;
         left: 6rem;
-        top: 1.5rem;
+        top: 2.5rem;
     }
 
     .nomeProd {
@@ -1293,113 +1327,33 @@ body {
         margin-top: 0;
         margin-bottom: .5rem;
         left: 12rem;
-        top: -4rem;
+        top: -2.5rem;
+    }
+
+    .precoProdUnit {
+        position: relative;
+        width: 20%;
+        margin-top: 0;
+        left: 50%;
+        top: -2.9rem;
+        color: #e84118;
     }
 
     .precoProd {
         position: relative;
-        width: 50%;
+        width: 20%;
         margin-top: 0;
-        left: 12rem;
-        top: -4rem;
+        left: 67%;
+        top: -5.4rem;
         color: #e84118;
     }
 
-    .control {
-        font-size: 1rem;
+    .btnRemoveAction {
         position: relative;
-        display: block;
-        padding-left: 30px;
-        cursor: pointer;
-        width: 6%;
-        left: 14.1%;
-        top: -4rem;
-    }
-    
-    .control input {
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-    }
-
-    .control__indicator {
-        position: absolute;
-        top: 2px;
-        left: 0;
-        width: 20px;
-        height: 20px;
-        background: #e6e6e6;
-    }
-    
-    .control__indicator {
-        border-radius: 50%;
-    }
-
-    /* Hover and focus states */
-    .control:hover input ~ .control__indicator,
-    .control input:focus ~ .control__indicator {
-        background: #ccc;
-    }
-
-    /* Checked state */
-    .control input:checked ~ .control__indicator {
-        background: #00cfd0;
-    }
-
-    /* Hover state whilst checked */
-    .control:hover input:not([disabled]):checked ~ .control__indicator,
-    .control input:checked:focus ~ .control__indicator {
-        background: rgb(61, 236, 236);
-    }
-
-    /* Disabled state */
-    .control input:disabled ~ .control__indicator {
-        pointer-events: none;
-        opacity: .6;
-        background: #e6e6e6;
-    }
-
-    /* Check mark */
-    .control__indicator:after {
-        position: absolute;
-        display: none;
-        content: '';
-    }
-
-    /* Show check mark */
-    .control input:checked ~ .control__indicator:after {
-        display: block;
-    }
-
-    /* Checkbox tick */
-    .control--checkbox .control__indicator:after {
-        top: 4px;
-        left: 8px;
-        width: 3px;
-        height: 8px;
-        transform: rotate(45deg);
-        border: solid #fff;
-        border-width: 0 2px 2px 0;
-    }
-
-    /* Disabled tick colour */
-    .control--checkbox input:disabled ~ .control__indicator:after {
-        border-color: #7b7b7b;
-    }
-
-    /* Radio button inner circle */
-    .control--radio .control__indicator:after {
-        top: 7px;
-        left: 7px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #fff;
-    }
-
-    /* Disabled circle colour */
-    .control--radio input:disabled ~ .control__indicator:after {
-        background: #7b7b7b;
+        left: 14.3%;
+        top: -6rem;
+        text-decoration: none;
+        color: black;
     }
 
     .txtQtd {
@@ -1423,14 +1377,23 @@ body {
         height: .05rem;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
         position: relative;
-        top: -2.8rem;
+        top: -4.2rem;
         left: 2rem;
+    }
+
+    .semRegistros {
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 1.4rem;
+        width: 100%;
+        text-align: center;
+        margin: 2rem 0;
+        color: #e84118;
     }
 
     .resultadoCart {
         width: 90%;
         font-family: 'Titillium Web', sans-serif;
-        background: #ccc;
+        background: #2f3640;
         margin-left: auto;
         margin-right: auto;
         border-radius: 2px;
@@ -1442,6 +1405,19 @@ body {
         font-size: 1.3rem;
         padding: 5px 0;
         width: 35%;
+        color: #ffffff;
+    }
+
+    .totalQtd {
+        position: relative;
+        float: right;
+        right: 5.2%;
+        font-size: 1.3rem;
+        padding: 5px 0;
+        width: 12%;
+        margin: 0;
+        top: -4.8rem;
+        color: #ffffff;
     }
 
     .finalBtnsCart {
@@ -1462,6 +1438,7 @@ body {
         color: #ffffff;
         cursor: pointer;
         border-radius: 2px;
+        text-decoration: none;
     }
 
     .btnCart:hover {
@@ -1481,6 +1458,7 @@ body {
         color: #ffffff;
         cursor: pointer;
         border-radius: 2px;
+        text-decoration: none;
     }
 
     .btnCartSpec:hover {

@@ -30,6 +30,7 @@
             <li class="celulaTrocaPagina" onclick="carregar('inserir_subcateg.php');"><a class="linkTrocaPagina" href="#">Inserir Subcategoria</a></li>
             <li class="celulaTrocaPagina" onclick="carregar('inserir_tipo.php');"><a class="linkTrocaPagina" href="#">Inserir Tipo</a></li>
             <li class="celulaTrocaPagina" onclick="carregar('inserir_marca.php');"><a class="linkTrocaPagina" href="#">Inserir Marca</a></li>
+            <li class="celulaTrocaPagina" onclick="carregar('inserir_armazem.php');"><a class="linkTrocaPagina" href="#">Inserir Armazém</a></li>
         </ul>
         </section>
         <section id="conteudo" class="l-main">
