@@ -3,7 +3,7 @@
 
     session_start();
     include("functions/main.php");
-
+    require_once('geoplugin.class.php');
 ?>
 <html>
 <head>
@@ -36,9 +36,12 @@
             <div class="cidadeArmazem">
                 <i class="fas fa-globe-americas"></i>
                 <select name="cidadeArmazem" id="cidadeArmazem">
-                    <option>Selecione o armazém</option>
+                    <optgroup label="Escolha uma cidade">
                     <?php
-                                
+                     $geoplugin = new geoPlugin();
+
+                    $geoplugin->locate();   
+
                     $buscar_armazem = "SELECT * FROM armazens";
 
                     $run_arm = mysqli_query($con, $buscar_armazem);
@@ -46,13 +49,34 @@
                     while ($row_arms = mysqli_fetch_array($run_arm)) {
 
                         $id_armazem = $row_arms['armazem_id'];
-                        $nome_armazem = $row_arms['armazem_cidade'];
-                        $estado_armazem = $row_arms['armazem_estado'];
+                       
+                        $id_cid = $row_arms['id_cid'];
+                        $buscar_cidade = "SELECT * FROM cidade Where id_cid = $id_cid";
 
-                        echo "<option value='$id_armazem'>$nome_armazem - $estado_armazem</option>";
+                        $run_cid = mysqli_query($con, $buscar_cidade);
+
+                        while ($row_cid = mysqli_fetch_array($run_cid)) {
+
+                            $cidade = $row_cid['nome_cid'];
+                           
+                           $cidade_plugin = $geoplugin->city;
+
+                               if($cidade == $cidade_plugin){}
+                                echo "<option value='$id_armazem'>$cidade</option>"; 
+                                {
+                                 if ($cidade != $cidade_plugin) {
+                                    echo "<option >SEM ARMAZENS</option>";
+                                 }
+
+
+
+                                    
+                        
+
+                     }
                     }
 
-                ?>
+                ?></optgroup>
                 </select>
             </div>    
         </div>
