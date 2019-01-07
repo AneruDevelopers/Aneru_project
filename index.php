@@ -73,7 +73,7 @@
                                     
                         
 
-                     }
+                    }
                     }
 
                 ?></optgroup>
@@ -223,6 +223,8 @@
             <?php
                     }
                 }
+
+            }
             ?>
             </div>
             <h2 class="tituloOfertas tOff2">O NATAL CHEGOU!</h2>

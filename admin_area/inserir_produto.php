@@ -24,6 +24,30 @@
                         <td><input type="text" name="nome_produto" size="60" required></td>
                     </tr>
                     <tr>
+                        <td align="center"><b>Escolha o Armazém:</b></td>
+                        <td>
+                               <select name="esc_arm" tabindex="1">
+                                    <optgroup label="Escolha um Armazém">
+                                     <?php
+                                
+                                         $buscar_arm = "SELECT * FROM armazem";
+
+                                          $run_arm = mysqli_query($con, $buscar_arm);
+
+                            while ($row_arm = mysqli_fetch_array($run_arm)) {
+
+                                $arm_id = $row_arm['armazem_id'];
+                                $arm_nome = $row_arm['nome_armazem'];
+
+                                echo "<option  value='$arm_id'>$arm_nome</option>";
+                            }
+
+                        ?></optgroup>
+</select>                            
+                        </td>
+                    </tr>
+                    <tr>
+
                     <td align="center"><b>Marca do produto:</b></td>
                     <td>
                         <select name="marca_produto" id="">
@@ -153,14 +177,14 @@
         $descricao_produto = $_POST['descricao_produto'];
         $keywords_produto = $_POST['keywords_produto'];
         $code = $_POST['code'];
-
+        $armazem = $_POST['esc_arm'];
         $imagem_produto = $_FILES['imagem_produto']['name'];
         $imagem_produto_tmp = $_FILES['imagem_produto']['tmp_name'];
 
         move_uploaded_file($imagem_produto_tmp, "imagens_produtos/$imagem_produto");
 
-        $inserir_produto = "INSERT INTO produtos (produto_nome, produto_marca, produto_cat, produto_subcateg, produto_tipo, produto_preco, produto_desc, produto_keywords, produto_img, code) 
-        VALUES ('$nome_produto', '$marca_produto', '$categoria_produto', '$subcategoria_produto', '$tipo_produto', '$preco_produto', '$descricao_produto', '$keywords_produto', '$imagem_produto', '$code')";
+        $inserir_produto = "INSERT INTO produtos (produto_nome, produto_marca, produto_cat, produto_subcateg, produto_tipo, produto_preco, produto_desc, produto_keywords, produto_img, armazem_id) 
+        VALUES ('$nome_produto', '$marca_produto', '$categoria_produto', '$subcategoria_produto', '$tipo_produto', '$preco_produto', '$descricao_produto', '$keywords_produto', '$imagem_produto', '$armazem')";
 
         $inserir_pro = mysqli_query($con, $inserir_produto);
 
