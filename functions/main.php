@@ -6,6 +6,84 @@ if(mysqli_connect_errno()) {
     echo "ERRO: " . mysqli_connect_error();
     }
 
+    // Conexão Banco
+
+    class DBController {
+        private $host = "localhost";
+        private $user = "root";
+        private $password = "senhadopedro";
+        private $database = "aneru";
+        private $conn;
+        
+        function __construct() {
+            $this->conn = $this->connectDB();
+        }
+        
+        function connectDB() {
+            $conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
+            return $conn;
+        }
+        
+        function runQuery($query) {
+            $result = mysqli_query($this->conn,$query);
+            while($row=mysqli_fetch_assoc($result)) {
+                $resultset[] = $row;
+            }		
+            if(!empty($resultset))
+                return $resultset;
+        }
+        
+        function numRows($query) {
+            $result  = mysqli_query($this->conn,$query);
+            $rowcount = mysqli_num_rows($result);
+            return $rowcount;	
+        }
+    }
+    $db_handle = new DBController();
+
+    // Carrinho de compras
+
+    if(!empty($_GET["action"])) {
+        switch($_GET["action"]) {
+            case "add":
+                if(!empty($_POST["quantity"])) {
+                    $productByCode = $db_handle->runQuery("SELECT * FROM produtos WHERE code='" . $_GET["code"] . "'");
+                    $itemArray = array($productByCode[0]["code"]=>array('produto_nome'=>$productByCode[0]["produto_nome"], 'code'=>$productByCode[0]["code"], 'produto_preco'=>$productByCode[0]["produto_preco"], 'produto_id'=>$productByCode[0]["produto_id"], 'quantity'=>$_POST["quantity"], 'produto_img'=>$productByCode[0]["produto_img"]));
+                    
+                    if(!empty($_SESSION["cart_item"])) {
+                        if(in_array($productByCode[0]["code"],array_keys($_SESSION["cart_item"]))) {
+                            foreach($_SESSION["cart_item"] as $k => $v) {
+                                    if($productByCode[0]["code"] == $k) {
+                                        if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+                                            $_SESSION["cart_item"][$k]["quantity"] = 0;
+                                        }
+                                        $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+                                    }
+                            }
+                        } else {
+                            $_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+                        }
+                    } else {
+                        $_SESSION["cart_item"] = $itemArray;
+                    }
+                }
+            break;
+            case "remove":
+                if(!empty($_SESSION["cart_item"])) {
+                    foreach($_SESSION["cart_item"] as $k => $v) {
+                            if($_GET["code"] == $k)
+                                unset($_SESSION["cart_item"][$k]);				
+                            if(empty($_SESSION["cart_item"]))
+                                unset($_SESSION["cart_item"]);
+                    }
+                }
+            break;
+            case "empty":
+                unset($_SESSION["cart_item"]);
+            break;	
+        }
+        }
+
     function busca_ip() {
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP'))
@@ -226,27 +304,6 @@ if(mysqli_connect_errno()) {
 //     }
 // }
 
-    function buscaPro() {
-
-                $product_array = $db_handle->runQuery("SELECT * FROM produtos ORDER BY id ASC");
-                if (!empty($product_array)) { 
-                    foreach($product_array as $key=>$value){
-                
-                    echo "<div class='product-item'>
-                        <form method='post' action='index.php?action=add&code=<?php echo $product_array[$key]['produto_code']; ?>'>
-                        <div class='product-image'><img src='<?php echo $product_array[$key]['produto_image']; ?>'></div>
-                        <div class='product-title'><?php echo $product_array[$key]['produto_nome']; ?></div>
-                        <div class='product-price'><?php echo 'R$'.$product_array[$key]['produto_preco']; ?></div>
-                        <div class='cart-action'><input type='text' class='product-quantity' name='quantity' value='1' size='2' /><input type='submit' value='Add to Cart' class='btnAddAction' /></div>
-                        </div>
-                        </form>
-                    </div>";
-            
-                    }
-                }
-            
-    }
-
     function buscaPro2() {
 
         if(!isset($_GET['subcateg'])) {
@@ -282,82 +339,5 @@ if(mysqli_connect_errno()) {
     }
     }
 
-    // Conexão Banco
-
-    class DBController {
-        private $host = "localhost";
-        private $user = "root";
-        private $password = "senhadopedro";
-        private $database = "aneru";
-        private $conn;
-        
-        function __construct() {
-            $this->conn = $this->connectDB();
-        }
-        
-        function connectDB() {
-            $conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
-            return $conn;
-        }
-        
-        function runQuery($query) {
-            $result = mysqli_query($this->conn,$query);
-            while($row=mysqli_fetch_assoc($result)) {
-                $resultset[] = $row;
-            }		
-            if(!empty($resultset))
-                return $resultset;
-        }
-        
-        function numRows($query) {
-            $result  = mysqli_query($this->conn,$query);
-            $rowcount = mysqli_num_rows($result);
-            return $rowcount;	
-        }
-    }
-    $db_handle = new DBController();
-
-    // Carrinho de compras
-
-    if(!empty($_GET["action"])) {
-        switch($_GET["action"]) {
-            case "add":
-                if(!empty($_POST["quantity"])) {
-                    $productByCode = $db_handle->runQuery("SELECT * FROM produtos WHERE produto_id='" . $_GET["code"] . "'");
-                    $itemArray = array($productByCode[0]["produto_id"]=>array('produto_nome'=>$productByCode[0]["produto_nome"], 'produto_preco'=>$productByCode[0]["produto_preco"], 'produto_id'=>$productByCode[0]["produto_id"], 'quantity'=>$_POST["quantity"], 'produto_img'=>$productByCode[0]["produto_img"]));
-                    
-                    if(!empty($_SESSION["cart_item"])) {
-                        if(in_array($productByCode[0]["produto_id"],array_keys($_SESSION["cart_item"]))) {
-                            foreach($_SESSION["cart_item"] as $k => $v) {
-                                    if($productByCode[0]["produto_id"] == $k) {
-                                        if(empty($_SESSION["cart_item"][$k]["quantity"])) {
-                                            $_SESSION["cart_item"][$k]["quantity"] = 0;
-                                        }
-                                        $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
-                                    }
-                            }
-                        } else {
-                            $_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
-                        }
-                    } else {
-                        $_SESSION["cart_item"] = $itemArray;
-                    }
-                }
-            break;
-            case "remove":
-                if(!empty($_SESSION["cart_item"])) {
-                    foreach($_SESSION["cart_item"] as $k => $v) {
-                            if($_GET["code"] == $k)
-                                unset($_SESSION["cart_item"][$k]);				
-                            if(empty($_SESSION["cart_item"]))
-                                unset($_SESSION["cart_item"]);
-                    }
-                }
-            break;
-            case "empty":
-                unset($_SESSION["cart_item"]);
-            break;	
-        }
-        }
-
+    
 ?>

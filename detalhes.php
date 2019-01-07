@@ -14,78 +14,56 @@
     <link rel="stylesheet" type="text/css" href="style/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script type="text/javascript" src="js/main.js" async></script>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">     
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">     
 </head>
 <body>
     <div class="l-wrapper_detalhes">
-        <div class="l-header-top_detalhes">
-                <div class="redesSociais">
-                        <ul class="listaRedes">
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-google-plus-g"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                            <li class="celulaListaRedes">
-                                <a class="linkListaRedes" href="#">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">ANERU</a></h1>
+        <div class='l-header-top_detalhes'>
+            <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
+        </div>
+        <div class="l-header_detalhes">
+        <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
             <div class="buscaBoxHeader" id="buscaBoxHeader">
-                <form class="formPesquisaHeader" method="get" action="resultado.php" enctype="multipart/form-data">
-                    <input class="pesquisaTxtHeader" type="text" name="" placeholder="Clique e pesquise">
+                <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
+                    <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder="Clique e pesquise">
                         <button class="pesquisaBtnHeader" type="submit" name="search">
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
+            </div>
+            <div class="cidadeArmazem">
+                <i class="fas fa-globe-americas"></i>
+                <select name="cidadeArmazem" id="cidadeArmazem">
+                    <option>Selecione o armazém</option>
+                    <?php
+                                
+                    $buscar_armazem = "SELECT * FROM armazens";
+
+                    $run_arm = mysqli_query($con, $buscar_armazem);
+
+                    while ($row_arms = mysqli_fetch_array($run_arm)) {
+
+                        $id_armazem = $row_arms['armazem_id'];
+                        $nome_armazem = $row_arms['armazem_cidade'];
+                        $estado_armazem = $row_arms['armazem_estado'];
+
+                        echo "<option value='$id_armazem'>$nome_armazem - $estado_armazem</option>";
+                    }
+
+                ?>
+                </select>
             </div>    
         </div>
-        <div class="l-header_detalhes" id="headerSticky">
-                <ul class="usuarioHeader">
-                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php preco_total(); ?> / <?php total_itens(); ?><i class="fas fa-shopping-cart"></i></a></li>
-                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#">Entrar</a></li>
+        <div class="l-header-bottom_detalhes" id="headerSticky">
+            <ul class="usuarioHeader">
+                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
+                    <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#"><i class="far fa-user-circle"></i></a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
-                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#">Menu</a></li>
-                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos_2.php">Como Funcionamos</a></li>
+                    <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos.php">Como Funcionamos</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Atendimento</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#"><i class="fas fa-ticket-alt"></i> Cupons</a></li>
                 </ul>
                 <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();">
                     <div class="categoriasMenu">
@@ -194,6 +172,7 @@
     ?>
         </div>
         <div class='l-main_detalhes-2'>
+            <?php carrinho(); ?>
             <?php
 
                 if(isset($_GET['id_prod'])):
@@ -210,6 +189,7 @@
                         $prod_nome = $row_prod['produto_nome'];
                         $prod_preco = $row_prod['produto_preco'];
                         $prod_desc = $row_prod['produto_desc'];
+                        $prod_code = $row_prod['code'];
 
                         echo "<div class='produtoThumbDetalhe'>
                             
@@ -218,7 +198,7 @@
                             <div class='btnsDet'>
                                 <a class='linkBtnDet linkBtnDet1' href='index.php'><button class='btnAddCartDetalhe'><i class='fas fa-arrow-left'></i> Voltar</button></a>
                                 <a class='linkBtnDet linkBtnDet2' href='#'><button class='btnAddCartDetalhe'><i class='far fa-credit-card'></i> Comprar</button></a>
-                                <a class='linkBtnDet linkBtnDet3' href='index.php?id_prod=$prod_id'><button class='btnAddCartDetalhe'><i class='fas fa-cart-plus'></i> Adiconar</button></a>
+                                <a class='linkBtnDet linkBtnDet3' href='index.php?action=add&code=$prod_code&add_carrinho=$prod_id'><button class='btnAddCartDetalhe'><i class='fas fa-cart-plus'></i> Adiconar</button></a>
                             </div>
 
                         </div>";

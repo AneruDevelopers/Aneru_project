@@ -185,14 +185,14 @@
                     foreach($product_array as $key=>$value){
             ?>
                 <div class='produto_thumb'>
-                    <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["produto_id"]; ?>">
+                    <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>&add_carrinho=<?php echo $product_array[$key]["produto_id"]; ?>">
                         <a href='detalhes.php?id_prod=<?php echo $product_array[$key]["produto_id"]; ?>'>
                             <img class="imagemThumb" src="admin_area/imagens_produtos/<?php echo $product_array[$key]["produto_img"]; ?>"  width="180" height="180">
                             <div class="product-tile-footer">
                             <h4 class='nomeProduto'><?php echo $product_array[$key]["produto_nome"]; ?>
                         </a>
                         <p class='precoProduto'><?php echo "R$".$product_array[$key]["produto_preco"]; ?></p>
-                        <div class="cart-action"><input type="text" class="productQtd" name="quantity" value="1" size="2" /><a class='linkBtnAddCart' href='index.php?add_carrinho=' style='float:right;'><button type="submit" class='btnAddCart'><i class='fas fa-cart-plus'></i></button></a></div>       
+                        <div class="cart-action"><input type="text" class="productQtd" name="quantity" value="1" size="2" /><a class='linkBtnAddCart' href="index.php" style='float:right;'><button type="submit" class='btnAddCart'><i class='fas fa-cart-plus'></i></button></a></div>       
                     </div>
                     </form>
                 </div>

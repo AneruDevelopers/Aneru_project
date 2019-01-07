@@ -1014,10 +1014,11 @@ body {
     
     .l-wrapper_detalhes {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 8rem 5rem auto auto auto 25rem;
+        grid-template-rows: 2.5rem 5rem 4rem auto auto auto 25rem;
         grid-template-areas:
             "header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top"
             "header header header header header header header header header header header header"
+            "header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom"
             "main-1 main-1 main-1 main-1 main-1 main-1 main-2 main-2 main-2 main-2 main-2 main-2"
             "sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1 sub-main-1"
             "sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2 sub-main-2"
@@ -1027,18 +1028,24 @@ body {
 
     .l-header-top_detalhes {
         grid-area: header-top;
-        background-color: #ffffff;
+        background-color: #2f3640;
         width: 100%;
         text-align: center;
-        mix-blend-mode: multiply;
     }
 
     .l-header_detalhes {
-        grid-area: header;
-        background-color: #2f3640;
+        grid-area: header;;
+        background-color: #00cfd0;
         width: 100%;
+        text-align: center;
         z-index: 2;
-        top: 5rem;
+    }
+
+    .l-header-bottom_detalhes {
+        grid-area: header-bottom;
+        background-color: #e6e6e6;
+        width: 100%;
+        z-index: 1;
     }
 
     .l-main_detalhes-1 {

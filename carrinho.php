@@ -1,9 +1,7 @@
-
 <!DOCTYPE>
 <?php
 
     session_start();
-
     include("functions/main.php");
 
 ?>
@@ -133,14 +131,13 @@
                         foreach ($_SESSION["cart_item"] as $item){
                             $item_price = $item["quantity"]*$item["produto_preco"];
                             ?>
-
                                 <div class='productDiv'>
                                     <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $item["produto_img"]; ?>" width="80" height='80'>
                                     <p class='nomeProd'><b><?php echo $item["produto_nome"]; ?></b></p>
                                     <p class='precoProdUnit'><?php echo "R$ ".$item["produto_preco"]; ?></p>
                                     <p class='precoProd'><?php echo "R$ ". number_format($item_price,2); ?></p>
-                                    <a href="carrinho.php?action=remove&code=<?php echo $item["produto_id"]; ?>" class="btnRemoveAction">Remover</a>
-                                    <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $item["quantity"]; ?>">
+                                    <a href="carrinho.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction">Remover</a>
+                                        <input class="txtQtd" type="text" size="15" name="quantity" value="<?php echo $item["quantity"]; ?>">
                                     <hr class='linhaCart'>
                                 </div>
                             <?php
