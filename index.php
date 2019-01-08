@@ -37,46 +37,7 @@
                 <i class="fas fa-globe-americas"></i>
                 <select name="cidadeArmazem" id="cidadeArmazem">
                     <optgroup label="Escolha uma cidade">
-                    <?php
-                     $geoplugin = new geoPlugin();
-
-                    $geoplugin->locate();   
-
-                    $buscar_armazem = "SELECT * FROM armazens";
-
-                    $run_arm = mysqli_query($con, $buscar_armazem);
-
-                    while ($row_arms = mysqli_fetch_array($run_arm)) {
-
-                        $id_armazem = $row_arms['armazem_id'];
-                       
-                        $id_cid = $row_arms['id_cid'];
-                        $buscar_cidade = "SELECT * FROM cidade Where id_cid = $id_cid";
-
-                        $run_cid = mysqli_query($con, $buscar_cidade);
-
-                        while ($row_cid = mysqli_fetch_array($run_cid)) {
-
-                            $cidade = $row_cid['nome_cid'];
-                           
-                           $cidade_plugin = $geoplugin->city;
-
-                               if($cidade == $cidade_plugin){}
-                                echo "<option value='$id_armazem'>$cidade</option>"; 
-                                {
-                                 if ($cidade != $cidade_plugin) {
-                                    echo "<option >SEM ARMAZENS</option>";
-                                 }
-
-
-
-                                    
-                        
-
-                    }
-                    }
-
-                ?></optgroup>
+ </optgroup>
                 </select>
             </div>    
         </div>
@@ -209,14 +170,28 @@
                     foreach($product_array as $key=>$value){
             ?>
                 <div class='produto_thumb'>
-                    <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>&add_carrinho=<?php echo $product_array[$key]["produto_id"]; ?>">
+                    <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]['code']; ?>&add_carrinho=<?php echo $product_array[$key]['produto_id']; ?>">
                         <a href='detalhes.php?id_prod=<?php echo $product_array[$key]["produto_id"]; ?>'>
                             <img class="imagemThumb" src="admin_area/imagens_produtos/<?php echo $product_array[$key]["produto_img"]; ?>"  width="180" height="180">
                             <div class="product-tile-footer">
                             <h4 class='nomeProduto'><?php echo $product_array[$key]["produto_nome"]; ?>
                         </a>
                         <p class='precoProduto'><?php echo "R$".$product_array[$key]["produto_preco"]; ?></p>
-                        <div class="cart-action"><input type="text" class="productQtd" name="quantity" value="1" size="2" /><a class='linkBtnAddCart' href="index.php" style='float:right;'><button type="submit" class='btnAddCart'><i class='fas fa-cart-plus'></i></button></a></div>       
+                        <div class="cart-action">
+                            
+                            <select class="productQtd" name="quantity">
+                                <?php 
+                               $q = $product_array[$key]["quantidade"];
+                                   $n = 1; 
+                                while ($q >= $n ) {
+                                    echo "<option value='$n'>$n</option>";
+                                    $n++;
+                                }
+                                 ?>
+                            </select>
+   
+
+                            <a class='linkBtnAddCart' href="index.php" style='float:right;'><button type="submit" class='btnAddCart'><i class='fas fa-cart-plus'></i></button></a></div>       
                     </div>
                     </form>
                 </div>
@@ -224,13 +199,10 @@
                     }
                 }
 
-            }
+            
             ?>
             </div>
-            <h2 class="tituloOfertas tOff2">O NATAL CHEGOU!</h2>
-            <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
-                
-            </div>
+
         </div>
         <div class="l-footer">            
     
