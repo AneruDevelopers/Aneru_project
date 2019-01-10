@@ -1,7 +1,7 @@
-
 <!DOCTYPE>
 <?php
 
+    session_start();
     include("functions/main.php");
 
 ?>
@@ -14,15 +14,16 @@
     <link rel="stylesheet" type="text/css" href="style/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script type="text/javascript" src="js/main.js" async></script>
+    <script type="text/javascript" src="js\jquery-3.3.1.min.js" async></script>
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Titillium+Web" rel="stylesheet">     
 </head>
 <body>
-    <div class="l-wrapper_detalhes">
-        <div class='l-header-top_detalhes'>
+    <div class="l-wrapper_checkout">
+        <div class='l-header-top_carrinho'>
             <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
         </div>
-        <div class="l-header_detalhes">
-        <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
+        <div class="l-header_checkout">
+            <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
             <div class="buscaBoxHeader" id="buscaBoxHeader">
                 <form class="formPesquisaHeader" method="get" action="resultados.php" enctype="multipart/form-data">
                     <input class="pesquisaTxtHeader" type="text" name="buscaBarra" placeholder="Clique e pesquise">
@@ -30,40 +31,18 @@
                             <i class="fas fa-search"></i>
                         </button>
                 </form>
-            </div>
-            <div class="cidadeArmazem">
-                <i class="fas fa-globe-americas"></i>
-                <select name="cidadeArmazem" id="cidadeArmazem">
-                    <option>Selecione o armazém</option>
-                    <?php
-                                
-                    $buscar_armazem = "SELECT * FROM armazens";
-
-                    $run_arm = mysqli_query($con, $buscar_armazem);
-
-                    while ($row_arms = mysqli_fetch_array($run_arm)) {
-
-                        $id_armazem = $row_arms['armazem_id'];
-                        $nome_armazem = $row_arms['armazem_cidade'];
-                        $estado_armazem = $row_arms['armazem_estado'];
-
-                        echo "<option value='$id_armazem'>$nome_armazem - $estado_armazem</option>";
-                    }
-
-                ?>
-                </select>
             </div>    
         </div>
-        <div class="l-header-bottom_detalhes" id="headerSticky">
-            <ul class="usuarioHeader">
-                    <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
+        <div class="l-header-bottom_checkout" id="headerSticky">
+                <ul class="usuarioHeader">
+                <li class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="carrinho.php"><?php total_itens(); ?><i class="fas fa-shopping-basket"></i></a></li>
                     <li id="btnModal" class="celulaUsuaurioHeader"><a class="linkUsuaurioHeader" href="#"><i class="far fa-user-circle"></i></a></li>
                 </ul>
                 <ul class="menuHeader clearfix">
                     <li id="btnMenuHeader" class="celulaMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();" onclick="toggle_visibility('modalMenuHeader');"><a class="linkMenuHeader" href="#"><i class="fas fa-warehouse"></i> Armazém</a></li>
                     <li class="celulaMenuHeader"><a class="linkMenuHeader" href="comofuncionamos.php">Como Funcionamos</a></li>
                     <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Atendimento</a></li>
-                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#"><i class="fas fa-ticket-alt"></i> Cupons</a></li>
+                    <li class="celulaMenuHeader"><a class="linkMenuHeader" href="#">Cupons</a></li>
                 </ul>
                 <div id="modalMenuHeader" class="modalMenuHeader" onmouseover="javascript:mostra(); " onmouseout="javascript:esconde();">
                     <div class="categoriasMenu">
@@ -134,123 +113,27 @@
                     </div>
                 </div>
             </div>
-        <div class="l-main_detalhes-1">
-        <?php carrinho(); ?>
-    <?php
+        <div class="l-main_checkout">
+            <div class="checkout_section" id="checkout_section">
+                <?php
 
-    if(isset($_GET['id_prod'])):
+                    if(!isset($_SESSION['cliente_email'])) { ?>
 
-        $produto_id = $_GET['id_prod'];
+                        <script>
+                            $(document).ready(function() {
+                                $('#modal').modal('show');  
+                            });
+                        </script>
+                            <?php } else {
 
-        $busca_prod = "SELECT * FROM produtos WHERE produto_id = $produto_id";
+                        include("pagamento.php");
+                    }
 
-        $run_prod = mysqli_query($con, $busca_prod);
-
-        while ($row_prod = mysqli_fetch_array($run_prod)):
-            
-            $prod_id = $row_prod['produto_id'];
-            $prod_img = $row_prod['produto_img'];
-           
-       
-       
-            $testar = "https://aneru.000webhostapp.com/detalhes.php?id_prod=";
-            $aux = 'qr_img0.50j/php/qr_img.php?';
-            $aux .= 'd=';
-            $aux .= $testar;
-            $aux.= $prod_id.'&';
-            $aux .= 'e=H&';
-            $aux .= 's=5&';
-            $aux .= 't=J';
-     
-            echo "<div class='produtoThumbImg'>
-
-                <img class='imagemThumbDetalhe' src='admin_area/imagens_produtos/$prod_img' width='500' height='500'>
-
-            </div>";
-            endwhile;
-            endif;
-    ?>
-        </div>
-        <div class='l-main_detalhes-2'>
-            <?php carrinho(); ?>
-            <?php
-
-                if(isset($_GET['id_prod'])):
-
-                    $produto_id = $_GET['id_prod'];
-            
-                    $busca_prod = "SELECT * FROM produtos WHERE produto_id = $produto_id";
-            
-                    $run_prod = mysqli_query($con, $busca_prod);
-            
-                    while ($row_prod = mysqli_fetch_array($run_prod)):
-                        
-                        $prod_id = $row_prod['produto_id'];
-                        $prod_nome = $row_prod['produto_nome'];
-                        $prod_preco = $row_prod['produto_preco'];
-                        $prod_desc = $row_prod['produto_desc'];
-                        $prod_code = $row_prod['code'];
-
-                        echo "<div class='produtoThumbDetalhe'>
-                            
-                            <h2 class='nomeProdutoDetalhe'>$prod_nome</h2>
-                            <p class='precoProdutoDetalhe'><b> R$ $prod_preco </b></p>
-                            <div class='btnsDet'>
-                                <a class='linkBtnDet linkBtnDet1' href='index.php'><button class='btnAddCartDetalhe'><i class='fas fa-arrow-left'></i> Voltar</button></a>
-                                <a class='linkBtnDet linkBtnDet2' href='#'><button class='btnAddCartDetalhe'><i class='far fa-credit-card'></i> Comprar</button></a>
-                                
-                                    <a class='linkBtnDet linkBtnDet3' href='index.php?action=add&code=$prod_code&add_carrinho=$prod_id'><button class='btnAddCartDetalhe'><i class='fas fa-cart-plus'></i> Adiconar</button></a>
-                            </div>
-
-                        </div>";
-                    endwhile;
-                    endif;
-            ?>
-        </div>
-        <div class='l-sub-main_detalhes-1'>
-            <hr class='linhaQrCode'>
-            <h3 class='titleQrCode'>Detalhes do Produto</h3>
-            <?php
-
-            if(isset($_GET['id_prod'])):
-
-                $produto_id = $_GET['id_prod'];
-        
-                $busca_prod = "SELECT * FROM produtos WHERE produto_id = $produto_id";
-        
-                $run_prod = mysqli_query($con, $busca_prod);
-        
-                while ($row_prod = mysqli_fetch_array($run_prod)):
-                    
-                    $prod_desc = $row_prod['produto_desc'];
-
-                    echo "<p class='txtDescProd'>$prod_desc</p>";
-
-                endwhile;
-                endif;
-                
-            ?>
-        </div>
-        <div class='l-sub-main_detalhes-2'>
-            <hr class='linhaQrCode'>
-            <h3 class='titleQrCode'>AneruScan<i class="far fa-copyright"></i></h3>
-            <div class='elementQrCode'>
-                <img class='qrCode' src="<?php echo $aux; ?>"/>
+                ?>
             </div>
-            <div class='elementTxtQrCode'>
-                <p class='txtQrCode'>Não perca tempo e utilize o <b>AneruScan</b> para <b>compartilhar</b> este produto com seus amigos e salve ele no seu dispositivo para não perdê-lo de vista!</p>
-            </div>
-            <div class='logosRedesSociaisQrCode'>
-                <i class="fab fa-whatsapp"></i>
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-snapchat-ghost"></i>
-                <i class="fab fa-google-plus-g"></i>
-            </div>
+        <div class='l-footer_checkout'>
+        
         </div>
-        <div class='l-footer_detalhes'>
-            
-        </div>
-    </div>
 </body>
 </body>
 </html>

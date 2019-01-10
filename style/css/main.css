@@ -15,6 +15,10 @@ body {
     margin: 0 0;
 }
 
+html, body{
+    height: 100%;
+}
+
 .l-wrapper {
     display: grid;
 }
@@ -940,47 +944,52 @@ body {
     /* PAGINA ---> subcategorias.php */
     /* =============================== */
     
-    .l-wrapper_4 {
+    .l-wrapper_subcategorias {
         display: grid;
     }
     
-    .l-wrapper_4 {
+    .l-wrapper_subcategorias {
         grid-template-columns: repeat(12, minmax(auto, 1fr));
-        grid-template-rows: 8rem 5rem auto 25rem;
+        grid-template-rows: 2.5rem 5rem 4rem auto 25rem;
         grid-template-areas:
-            "header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4 header-top_4"
-            "header_4 header_4 header_4 header_4 header_4 header_4 header_4 header_4 header_4 header_4 header_4 header_4"
-            "main_4 main_4 main_4 main_4 main_4 main_4 main_4 main_4 main_4 main_4 main_4 main_4"
-            "footer_4 footer_4 footer_4 footer_4 footer_4 footer_4 footer_4 footer_4 footer_4 footer_4 footer_4 footer_4"
+            "header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top"
+            "header header header header header header header header header header header header"
+            "header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
             ;
     }
 
-    .l-header-top_4 {
-        grid-area: header-top_4;
-        background-color: #ffffff;
-        width: 100%;
-        text-align: center;
-        mix-blend-mode: multiply;
-    }
-
-    .l-header_4 {
-        grid-area: header_4;
+    .l-header-top_subcategorias {
+        grid-area: header-top;
         background-color: #2f3640;
         width: 100%;
-        z-index: 2;
-        top: 5rem;
+        text-align: center;
     }
 
-    .l-main_4 {
-        grid-area: main_4;
-        background-color: #ffffff;
-        position: relative;
-    }
-
-    .l-footer_4 {
-        grid-area: footer_4;
+    .l-header_subcategorias {
+        grid-area: header;;
         background-color: #00cfd0;
-        position: relative;
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .l-header-bottom_subcategorias {
+        grid-area: header-bottom;
+        background-color: #e6e6e6;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .l-main_subcategorias {
+        grid-area: main;
+        background-color: #ffffff;
+    }
+
+    .l-footer_subcategorias {
+        grid-area: footer;
+        background: #00cfd0;
     }
 
     .produto_thumb_subcateg {
@@ -1292,20 +1301,22 @@ body {
         margin-top: 3rem;
     }
 
-    .colunasCart {
+    .tabelaCart {
         position: relative;
-        width: 60%;
-        left: 39%;
-        display: inline-flex;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
         font-family: 'Titillium Web', sans-serif;
     }
 
-    .colunasCart > h4 {
-        margin-left: 15%;
+    .colm {
+        margin: .5rem 0;
+        text-align: center;
+        color: #00cfd0;
     }
 
     .linhaCols {
-        width: 85%;
+        width: 96%;
         border: 0;
         height: .2rem;
         position: relative;
@@ -1314,68 +1325,18 @@ body {
         border-radius: 2px;
     }
 
-    .productDiv {
-        position: relative;
-        height: 8rem;
-        margin: 1rem 0;
+    .productRow {
         padding: 5px;
         font-family: 'Titillium Web', sans-serif;
+        height: 4rem;
     }
 
-    .elementImgCart {
-        position: relative;
-        left: 6rem;
-        top: 2.5rem;
+    .precoUnitCel {
+        text-align: center;
     }
 
-    .nomeProd {
-        position: relative;
-        width: 50%;
-        margin-top: 0;
-        margin-bottom: .5rem;
-        left: 12rem;
-        top: -2.5rem;
-    }
-
-    .precoProdUnit {
-        position: relative;
-        width: 20%;
-        margin-top: 0;
-        left: 50%;
-        top: -2.9rem;
-        color: #e84118;
-    }
-
-    .precoProd {
-        position: relative;
-        width: 20%;
-        margin-top: 0;
-        left: 67%;
-        top: -5.4rem;
-        color: #e84118;
-    }
-
-    .btnRemoveAction {
-        position: relative;
-        left: 14.3%;
-        top: -6rem;
-        text-decoration: none;
-        color: black;
-    }
-
-    .txtQtd {
-        position: relative;
-        float: right;
-        top: -8rem;
-        right: 8rem;
-        height: 2rem;
-        font-family: 'Titillium Web', sans-serif;
-        border: black solid 1px;
-        border-radius: 2px;
-    }
-
-    .txtQtd:focus {
-        border: #00cfd0 solid 1px;
+    .precoCel {
+        text-align: center;
     }
 
     .linhaCart {
@@ -1383,9 +1344,56 @@ body {
         border: 0;
         height: .05rem;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+
+    .elementImgCart {
         position: relative;
-        top: -4.2rem;
-        left: 2rem;
+        margin: 0;
+        left: 12%;
+        float: left;
+    }
+
+    .nomeProd {
+        position: relative;
+        margin: 0;
+        left: 15%;
+    }
+
+    .precoProdUnit {
+        position: relative;
+        color: #e84118;
+        margin: 0;
+    }
+
+    .precoProd {
+        position: relative;
+        color: #e84118;
+        margin: 0;
+    }
+
+    .btnRemoveAction {
+        position: relative;
+        text-decoration: none;
+        color: black;
+        margin: 0;
+        left: 15%;
+        top: 2rem;
+    }
+
+    .txtQtd {
+        position: relative;
+        height: 2rem;
+        font-family: 'Titillium Web', sans-serif;
+        border: black solid 1px;
+        border-radius: 2px;
+        margin: 0;
+        text-align: center;
+        width: 60%;
+        left: 20%;
+    }
+
+    .txtQtd:focus {
+        border: #00cfd0 solid 1px;
     }
 
     .semRegistros {
@@ -1403,28 +1411,26 @@ body {
         background: #2f3640;
         margin-left: auto;
         margin-right: auto;
-        border-radius: 2px;
     }
 
     .subtotal {
         position: relative;
-        left: 5rem;
         font-size: 1.3rem;
-        padding: 5px 0;
-        width: 35%;
         color: #ffffff;
+        margin: 0;
+        float: left;
+        left: 6%;
+        margin: .45rem 0;
     }
 
     .totalQtd {
         position: relative;
-        float: right;
-        right: 5.2%;
         font-size: 1.3rem;
-        padding: 5px 0;
-        width: 12%;
         margin: 0;
-        top: -4.8rem;
         color: #ffffff;
+        float: right;
+        right: 6%;
+        margin: .45em 0;
     }
 
     .finalBtnsCart {
@@ -1432,7 +1438,7 @@ body {
         display: inline-flex;
         width: auto;
         left: 32.9%;
-        margin-bottom: 2rem;
+        margin: 2rem 0;
     }
 
     .btnCart {
@@ -1619,6 +1625,57 @@ body {
         padding-left: 8rem;
         padding-right: 8rem;
         margin-top: 0rem;
+    }
+
+    /* PAGINA ---> checkout.php */
+    /* =============================== */
+
+    .l-wrapper_checkout {
+        display: grid;
+    }
+    
+    .l-wrapper_checkout {
+        grid-template-columns: repeat(12, minmax(auto, 1fr));
+        grid-template-rows: 2.5rem 5rem 4rem auto 25rem;
+        grid-template-areas:
+            "header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top header-top"
+            "header header header header header header header header header header header header"
+            "header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom header-bottom"
+            "main main main main main main main main main main main main"
+            "footer footer footer footer footer footer footer footer footer footer footer footer"
+            ;
+    }
+
+    .l-header-top_checkout {
+        grid-area: header-top;
+        background-color: #2f3640;
+        width: 100%;
+        text-align: center;
+    }
+
+    .l-header_checkout {
+        grid-area: header;;
+        background-color: #00cfd0;
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .l-header-bottom_checkout {
+        grid-area: header-bottom;
+        background-color: #e6e6e6;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .l-main_checkout {
+        grid-area: main;
+        background-color: #ffffff;
+    }
+
+    .l-footer_checkout {
+        grid-area: footer;
+        background: #00cfd0;
     }
 
 }

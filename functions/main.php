@@ -49,7 +49,8 @@ if(mysqli_connect_errno()) {
                 if(!empty($_POST["quantity"])) {
                     $productByCode = $db_handle->runQuery("SELECT * FROM produtos WHERE code='" . $_GET["code"] . "'");
                     $itemArray = array($productByCode[0]["code"]=>array('produto_nome'=>$productByCode[0]["produto_nome"], 'code'=>$productByCode[0]["code"], 'produto_preco'=>$productByCode[0]["produto_preco"], 'produto_id'=>$productByCode[0]["produto_id"], 'quantity'=>$_POST["quantity"], 'produto_img'=>$productByCode[0]["produto_img"]));
-                    
+                    $quant = $_POST["quantity"];
+
                     if(!empty($_SESSION["cart_item"])) {
                         if(in_array($productByCode[0]["code"],array_keys($_SESSION["cart_item"]))) {
                             foreach($_SESSION["cart_item"] as $k => $v) {
@@ -84,6 +85,44 @@ if(mysqli_connect_errno()) {
         }
         }
 
+        // Deleta item da tabela carrinho
+
+        if(isset($_GET['retira'])) {
+
+            $ip = busca_ip();
+
+                $retira_id = $_GET['retira'];
+                $deleta_produto = "DELETE FROM carrinho WHERE id_pro='$retira_id' AND end_ip='$ip'";
+                $run_delete = mysqli_query($con, $deleta_produto);
+                
+        }
+
+        // Deleta todos os itens do carrinho
+
+        if(isset($_GET["esvazia"])) {
+
+                $ip = busca_ip();
+
+                    $deleta_produto = "DELETE FROM carrinho WHERE end_ip='$ip'";
+                    $run_delete = mysqli_query($con, $deleta_produto);
+        }
+
+        // Modifica quantidade dos produtos
+
+        // if ((isset($_POST['atualizar_cart']))) {
+
+        //     $ip = busca_ip();
+
+        //     $i = 0;
+        //         $nova_qtd = $_POST['qtd'];
+        //         foreach($_POST['product_adjust_id'] as $pro_adj_id) {
+        //             $nova_qtd = $_POST['qtd'][$i];
+        //             $atualiza_qtd_produto = "UPDATE carrinho SET quant='$nova_qtd' WHERE end_ip='$ip' AND id_pro='$pro_adj_id'";
+        //             $run_atualizacao = mysqli_query($con, $atualiza_qtd_produto);
+        //             $i++;
+        //         }
+        // }
+
     function busca_ip() {
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP'))
@@ -113,6 +152,8 @@ if(mysqli_connect_errno()) {
 
             $pro_id = $_GET['add_carrinho'];
 
+            global $quant;
+
             $check_pro = "SELECT * FROM carrinho WHERE end_ip='$ip' AND id_pro='$pro_id'";
 
             $run_check = mysqli_query($con, $check_pro);
@@ -120,7 +161,7 @@ if(mysqli_connect_errno()) {
             if(mysqli_num_rows($run_check)>0) {
                 echo "";
             } else {
-                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','1')";
+                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','$quant')";
 
                 $run_pro = mysqli_query($con, $insere_pro);
 

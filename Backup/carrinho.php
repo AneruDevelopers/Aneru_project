@@ -167,7 +167,7 @@
                         <p class='nomeProd'><b><?php echo $nome_produto; ?></b></p>
                         <p class='precoProd'><?php echo "R$".$preco_unitario; ?></p>
                         <label class="control control--checkbox">Remover
-                            <input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"><input type="hidden" name="product_adjust_id[]" value="<?php echo $pro_id; ?>">
+                                <input type="hidden" name="product_adjust_id[]" value="<?php echo $pro_id; ?>">
                             <div class="control__indicator"></div>
                         </label>
                         <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $pro_qtd; ?>">
