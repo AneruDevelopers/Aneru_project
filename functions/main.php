@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","aneru");
+$con = mysqli_connect("localhost","root","senhadopedro","aneru");
 
 if(mysqli_connect_errno()) {
     echo "ERRO: " . mysqli_connect_error();
@@ -11,7 +11,7 @@ if(mysqli_connect_errno()) {
     class DBController {
         private $host = "localhost";
         private $user = "root";
-        private $password = "";
+        private $password = "senhadopedro";
         private $database = "aneru";
         private $conn;
         
