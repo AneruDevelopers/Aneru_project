@@ -890,7 +890,8 @@ html, body{
     .productQtd {
         position: relative;
         top: 1.5rem;
-        left: 8rem;
+        left: 7rem;
+        width: 2.5rem;
         height: 2rem;
         border: #00cfd0 solid .1rem;
         font-family: 'Titillium Web', sans-serif;

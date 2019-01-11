@@ -117,10 +117,8 @@
                 <div class='elementCarrinho'>
                     <h2 class='titleCarrinho'>RESUMO DO PEDIDO</h2>
                     <?php
-                    if(isset($_SESSION["cart_item"])){
-                        $total_quantity = 0;
-                        $total_price = 0;
-                    ?>
+                        
+                    ?>    
                     <table class="tabelaCart" border="0">
                         <tr>
                             <td colspan="4">
@@ -133,24 +131,68 @@
                             <td width="16%"><h4 class="colm">PREÇO FINAL</h4></td>
                             <td width="16%"><h4 class="colm">QUANTIDADE</h4></td>
                         </tr>
-                    <?php		
-                        foreach ($_SESSION["cart_item"] as $item){
-                            $item_price = $item["quantity"]*$item["produto_preco"];
+                    <?php
+
+
+                        $total = 0;
+                        $total_qtd = 0;
+
+                        global $con;
+
+                        $ip = busca_ip();
+
+                        $preco_select = "SELECT * FROM carrinho WHERE end_ip='$ip'";
+
+                        $run_preco = mysqli_query($con, $preco_select);
+
+                        while($p_preco=mysqli_fetch_array($run_preco)) {
+
+                            $pro_id = $p_preco['id_pro'];
+
+                            $pro_qtd = $p_preco['quant'];
+
+                            $preco_pro = "SELECT * FROM produtos WHERE produto_id='$pro_id'";
+
+                            $run_pro_preco = mysqli_query($con, $preco_pro);
+
+                            while($pp_preco=mysqli_fetch_array($run_pro_preco)) {
+
+                                #$preco_produto = array($pp_preco['produto_preco']);
+
+                                $produto_id = $pp_preco['produto_id'];
+
+                                $nome_produto = $pp_preco['produto_nome'];
+
+                                $img_produto = $pp_preco['produto_img'];
+
+                                $preco_unitario = $pp_preco['produto_preco'];
+
+                                $code_produto = $pp_preco['code'];
+
+                                $quantidade = array($pro_qtd);
+                                $valores_qtd = array_sum($quantidade);
+                                $total_qtd += $valores_qtd;
+                                
+                                $sub_total_preco = $preco_unitario * $pro_qtd;
+                                $preco_produto = array($sub_total_preco);
+                                $valores = array_sum($preco_produto);
+                                $total += $valores;
+
                     ?>
                         <tr class='productRow'>
                             <td class="productCel">
-                                <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo $item["produto_img"]; ?>" width="80" height='80'>
-                                <p class='nomeProd'><b><?php echo $item["produto_nome"]; ?></b></p>  
-                                <a href="carrinho.php?action=remove&code=<?php echo $item["code"]; ?>&retira=<?php echo $item["produto_id"]; ?>" class="btnRemoveAction"><i class="far fa-trash-alt"></i> Remover</a>
+                                <img class='elementImgCart' src="admin_area/imagens_produtos/<?php echo  $img_produto; ?>" width="80" height='80'>
+                                <p class='nomeProd'><b><?php echo $nome_produto; ?></b></p>  
+                                <a href="carrinho.php?action=remove&code=<?php echo  $code_produto; ?>&retira=<?php echo $produto_id; ?>" class="btnRemoveAction"><i class="far fa-trash-alt"></i> Remover</a>
                             </td>
                             <td class="precoUnitCel">
-                                <p class='precoProdUnit'><?php echo "R$ ".$item["produto_preco"]; ?></p>
+                                <p class='precoProdUnit'><?php echo "R$ ".$preco_unitario; ?></p>
                             </td>
                             <td class="precoCel">
-                                <p class='precoProd'><?php echo "R$ ". number_format($item_price,2); ?></p>
+                                <p class='precoProd'><?php echo "R$ ". number_format($sub_total_preco,2); ?></p>
                             </td>    
                             <td class="productCel">
-                                <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $item["quantity"]; ?>">
+                                <input class="txtQtd" type="text" size="15" name="qtd" value="<?php echo $pro_qtd; ?>">
                                 <!-- <input type="hidden" name="product_adjust_id[]" value=""> -->
                             </td>
                         </tr>
@@ -159,26 +201,16 @@
                                 <hr class='linhaCart'>
                             </td>
                         </tr>
-                    <?php
-                            $total_quantity += $item["quantity"];
-                            $total_price += ($item["produto_preco"]*$item["quantity"]);
-                        }
-                    ?>
+                    <?php } } ?>
                     </div>
                     <tr class='resultadoCart'>
                         <td colspan="4">
-                            <h5 class='subtotal'>Sub Total: <?php echo "R$ ".number_format($total_price, 2); ?></h5>   
-                            <h5 class='totalQtd'>Total Itens: <?php echo $total_quantity; ?></h5>
+                            <h5 class='subtotal'>Sub Total: <?php echo "R$ ".number_format($total, 2); ?></h5>   
+                            <h5 class='totalQtd'>Total Itens: <?php echo $total_qtd; ?></h5>
                         </td>
                     </tr>
                     </table>
-                    <?php
-                        } else {
-                    ?>
-                    <div class="semRegistros">Seu carrino está vazio!!!</div>
-                    <?php 
-                        }
-                    ?>
+                    
                     <div class='finalBtnsCart'>
                         <a href="index.php" class='btnCartSpec btnContinuar' name="continuar">Voltar às Compras</a>
                         <a class='btnCart btnAtualizar' id="btnEmpty" href="carrinho.php?action=empty&esvazia=todos">Esvaziar Carrinho</a>
