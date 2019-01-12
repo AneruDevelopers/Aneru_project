@@ -24,14 +24,14 @@
         </header>
         <section class="l-menu">
             <h1 class="tituloAdminPage">Admstr</h1>
-        <ul class="listaTrocaPagina">
-            <li class="celulaTrocaPagina" onclick="carregar('inserir_produto.php');"><a class="linkTrocaPagina" href="#">Inserir Produtos</a></li>
-            <li class="celulaTrocaPagina" onclick="carregar('inserir_categ.php');"><a class="linkTrocaPagina" href="#">Inserir Categoria</a></li>
-            <li class="celulaTrocaPagina" onclick="carregar('inserir_subcateg.php');"><a class="linkTrocaPagina" href="#">Inserir Subcategoria</a></li>
-            <li class="celulaTrocaPagina" onclick="carregar('inserir_tipo.php');"><a class="linkTrocaPagina" href="#">Inserir Tipo</a></li>
-            <li class="celulaTrocaPagina" onclick="carregar('inserir_marca.php');"><a class="linkTrocaPagina" href="#">Inserir Marca</a></li>
-            <li class="celulaTrocaPagina" onclick="carregar('inserir_armazem.php');"><a class="linkTrocaPagina" href="#">Inserir Armazém</a></li>
-        </ul>
+            <ul class="listaTrocaPagina">
+                <li class="celulaTrocaPagina" onclick="carregar('inserir_produto.php');"><a class="linkTrocaPagina" href="#">Inserir Produtos</a></li>
+                <li class="celulaTrocaPagina" onclick="carregar('inserir_categ.php');"><a class="linkTrocaPagina" href="#">Inserir Categoria</a></li>
+                <li class="celulaTrocaPagina" onclick="carregar('inserir_subcateg.php');"><a class="linkTrocaPagina" href="#">Inserir Subcategoria</a></li>
+                <li class="celulaTrocaPagina" onclick="carregar('inserir_tipo.php');"><a class="linkTrocaPagina" href="#">Inserir Tipo</a></li>
+                <li class="celulaTrocaPagina" onclick="carregar('inserir_marca.php');"><a class="linkTrocaPagina" href="#">Inserir Marca</a></li>
+                <li class="celulaTrocaPagina" onclick="carregar('inserir_armazem.php');"><a class="linkTrocaPagina" href="#">Inserir Armazém</a></li>
+            </ul>
         </section>
         <section id="conteudo" class="l-main">
             

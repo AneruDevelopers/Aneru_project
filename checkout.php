@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Aneru</title>
+    <title>MarketViser</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -113,27 +113,35 @@
                     </div>
                 </div>
             </div>
-        <div class="l-main_checkout">
+        <div class="l-main_checkout" id="conteudo">
             <div class="checkout_section" id="checkout_section">
                 <?php
 
-                    if(!isset($_SESSION['cliente_email'])) { ?>
-
-                        <script>
-                            $(document).ready(function() {
-                                $('#modal').modal('show');  
-                            });
-                        </script>
-                            <?php } else {
+                    if(!isset($_SESSION['cliente_email'])) { 
+                
+                ?>
+                <div class="loginBox">
+                    <h2 class="tituloLog">Log-in</h2>
+                    <p class="accountTxt">Não fez registro ainda?<a id="btnRegistro" href="#" onclick="registrar('cadastrar_cliente.php');"> Crie uma conta</a></p>
+                    <form class="loginForm" action="checkout.php" method="post" enctype="multipart/form-data">
+                        <input class="emailTxt" name="" type="text" placeholder=" E-mail">
+                        <i class="fas fa-user"></i>
+                        <input class="senhaLogTxt" name="" type="password" placeholder=" Senha">
+                        <i class="fas fa-lock"></i>
+                        <button class="btnForm" type="submit">Pronto!</button>
+                    </form>
+                    <p class="forgotTxt">Esqueceu sua senha?<a href="#"> Pegue-a de volta!</a></p>
+                </div>
+                <?php } else {
 
                         include("pagamento.php");
                     }
 
                 ?>
             </div>
+        </div>
         <div class='l-footer_checkout'>
         
         </div>
-</body>
 </body>
 </html>

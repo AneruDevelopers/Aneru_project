@@ -141,8 +141,8 @@ html, body{
 
     .buscaBoxHeader {
         position: relative;
-        top: -3.85rem;
-        background: #e6e6e6;
+        top: -3.65rem;
+        background: #ffffff;
         height: 25px;
         border-radius: 40px;
         padding: 5px;
@@ -1676,7 +1676,48 @@ html, body{
 
     .l-footer_checkout {
         grid-area: footer;
-        background: #00cfd0;
+        background: #e6e6e6;
+    }
+
+    .loginBox {
+        position: relative;
+        width: 40%;
+        height: 20rem;
+        margin: 2rem auto;
+        background-color: #f5f6fa;
+        border-radius: 4px;
+        text-align: center;
+        padding: 1rem;
+        border: 1px solid #888;
+    }
+
+    .loginForm i{
+        position: relative;
+        left: -36.5%;
+        top: -.45rem;
+        transition: 300ms;
+    }
+
+    .loginForm .emailTxt:focus + i {
+        color: #00cfd0;
+    }
+
+    .loginForm .senhaLogTxt:focus + i {
+        color: #00cfd0;
+    }
+
+    /* cadastrar_cliente.php */
+
+    .registroBox {
+        position: relative;
+        width: 40%;
+        height: 50rem;
+        margin: 2rem auto;
+        background-color: #f5f6fa;
+        border-radius: 4px;
+        text-align: center;
+        padding: 1rem;
+        border: 1px solid #888;
     }
 
 }

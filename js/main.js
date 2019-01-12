@@ -144,4 +144,6 @@ function hideMenu5() {
 
 // STICK SLIDER
 
-
+function registrar(pagina){
+  $("#conteudo").load(pagina);
+}
