@@ -177,14 +177,14 @@
         <div class="l-main">
             <?php carrinho(); ?>
 
-            <h2 class="tituloOfertas"> <?php  
-          if (!empty($_SESSION['nome_cidade'])) {
-             $cidade =  "OFERTAS IMPERDÍVEIS EM ".$_SESSION['nome_cidade'];
-          }
-
-
-           echo $cidade;
-             ?></h2>
+            <h2 class="tituloOfertas">
+            <?php  
+                if (!empty($_SESSION['nome_cidade'])) {
+                    $cidade =  "OFERTAS IMPERDÍVEIS EM ".$_SESSION['nome_cidade'];
+                }
+                echo $cidade;
+             ?>
+            </h2>
             <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
             <?php
                 $product_array = $db_handle->runQuery("SELECT * FROM produtos ORDER BY RAND() LIMIT 0,12");
