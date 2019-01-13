@@ -1,17 +1,26 @@
 <?php
 
-$con = mysqli_connect("localhost","root","senhadopedro","aneru");
+$con = mysqli_connect("localhost","root","","aneru");
 
 if(mysqli_connect_errno()) {
     echo "ERRO: " . mysqli_connect_error();
     }
 
+        $host = 'mysql:host=localhost;dbname=aneru';
+        $nome = 'root';
+        $senha = '';
+       
+        try {
+        $conn = new PDO($host, $nome, $senha);
+        } catch(PDOException $e) {
+
+        }
     // Conexão Banco
 
     class DBController {
         private $host = "localhost";
         private $user = "root";
-        private $password = "senhadopedro";
+        private $password = "";
         private $database = "aneru";
         private $conn;
         
@@ -28,7 +37,7 @@ if(mysqli_connect_errno()) {
             $result = mysqli_query($this->conn,$query);
             while($row=mysqli_fetch_assoc($result)) {
                 $resultset[] = $row;
-            }		
+            }       
             if(!empty($resultset))
                 return $resultset;
         }
@@ -36,7 +45,7 @@ if(mysqli_connect_errno()) {
         function numRows($query) {
             $result  = mysqli_query($this->conn,$query);
             $rowcount = mysqli_num_rows($result);
-            return $rowcount;	
+            return $rowcount;   
         }
     }
     $db_handle = new DBController();
@@ -73,7 +82,7 @@ if(mysqli_connect_errno()) {
                 if(!empty($_SESSION["cart_item"])) {
                     foreach($_SESSION["cart_item"] as $k => $v) {
                             if($_GET["code"] == $k)
-                                unset($_SESSION["cart_item"][$k]);				
+                                unset($_SESSION["cart_item"][$k]);              
                             if(empty($_SESSION["cart_item"]))
                                 unset($_SESSION["cart_item"]);
                     }
@@ -81,7 +90,7 @@ if(mysqli_connect_errno()) {
             break;
             case "empty":
                 unset($_SESSION["cart_item"]);
-            break;	
+            break;  
         }
         }
 
@@ -90,9 +99,11 @@ if(mysqli_connect_errno()) {
         if(isset($_GET['retira'])) {
 
             $ip = busca_ip();
-
+            
                 $retira_id = $_GET['retira'];
                 $deleta_produto = "DELETE FROM carrinho WHERE id_pro='$retira_id' AND end_ip='$ip'";
+
+
                 $run_delete = mysqli_query($con, $deleta_produto);
                 
         }
@@ -100,7 +111,7 @@ if(mysqli_connect_errno()) {
         // Deleta todos os itens do carrinho
 
         if(isset($_GET["esvazia"])) {
-
+            
                 $ip = busca_ip();
 
                     $deleta_produto = "DELETE FROM carrinho WHERE end_ip='$ip'";
@@ -144,9 +155,25 @@ if(mysqli_connect_errno()) {
     }
 
     function carrinho() {
+
         if(isset($_GET['add_carrinho'])) {
-            
+            global $conn;
             global $con;
+        $cd = $_GET["code"];
+        $pro_select = "SELECT * FROM produtos WHERE code = '$cd' ";
+
+        $run_pro = mysqli_query($con, $pro_select);
+
+        while($p_pro=mysqli_fetch_array($run_pro)) {
+         $q =  $p_pro["quantidade"];
+         
+       }
+       $qu = $_POST["quantity"];
+
+       $c = $q - $qu;
+        $sql = 'UPDATE produtos SET quantidade=:q WHERE code = :c';
+        $statement = $conn ->prepare($sql);
+        $statement->execute([':q' => $c, 'c' => $cd]);
 
             $ip = busca_ip();
 
@@ -161,7 +188,7 @@ if(mysqli_connect_errno()) {
             if(mysqli_num_rows($run_check)>0) {
                 echo "";
             } else {
-                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','$quant')";
+                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','$q')";
 
                 $run_pro = mysqli_query($con, $insere_pro);
 

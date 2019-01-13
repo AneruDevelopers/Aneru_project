@@ -43,7 +43,7 @@
                             }
 
                         ?></optgroup>
-</select>                            
+                    </select>                            
                         </td>
                     </tr>
                     <tr>
@@ -108,6 +108,10 @@
                             <option>Selecione o tipo:</option>
                         </select>
                     </td>
+                    </tr>
+                    <tr>
+                        <td align="center"><b>Quantidade:</b></td>
+                        <td><input type="number" name="quant"  required>
                     </tr>
                     <tr>
                         <td align="center"><b>Imagem do produto:</b></td>
@@ -180,11 +184,15 @@
         $armazem = $_POST['esc_arm'];
         $imagem_produto = $_FILES['imagem_produto']['name'];
         $imagem_produto_tmp = $_FILES['imagem_produto']['tmp_name'];
+        //quantidade salvar duas 
+        $quant = $_POST["quant"];
+        $quant_seg = $_POST["quant"];    
+        
 
         move_uploaded_file($imagem_produto_tmp, "imagens_produtos/$imagem_produto");
 
-        $inserir_produto = "INSERT INTO produtos (produto_nome, produto_marca, produto_cat, produto_subcateg, produto_tipo, produto_preco, produto_desc, produto_keywords, produto_img, armazem_id) 
-        VALUES ('$nome_produto', '$marca_produto', '$categoria_produto', '$subcategoria_produto', '$tipo_produto', '$preco_produto', '$descricao_produto', '$keywords_produto', '$imagem_produto', '$armazem')";
+        $inserir_produto = "INSERT INTO produtos (produto_nome, produto_marca, produto_cat, produto_subcateg, produto_tipo, produto_preco, produto_desc, produto_keywords, produto_img, armazem_id, quantidade, qtd_seg) 
+        VALUES ('$nome_produto', '$marca_produto', '$categoria_produto', '$subcategoria_produto', '$tipo_produto', '$preco_produto', '$descricao_produto', '$keywords_produto', '$imagem_produto', '$armazem','$quant', '$quant_seg')";
 
         $inserir_pro = mysqli_query($con, $inserir_produto);
 

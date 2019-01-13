@@ -6,6 +6,24 @@
     require_once('geoplugin.class.php');
     header("Cache-Control: no-cache, must-revalidate");
     header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+            $geoplugin = new geoPlugin();
+            $geoplugin->locate();   
+            $buscar_armazem = "SELECT * FROM armazem";
+            $run_arm = mysqli_query($con, $buscar_armazem);
+            while ($row_arms = mysqli_fetch_array($run_arm)) {
+                 $id_cid = $row_arms['id_cid'];
+                 
+                 $buscar_cidade = "SELECT * FROM cidade Where id_cid = $id_cid";
+                 $run_cid = mysqli_query($con, $buscar_cidade);
+                        while ($row_cid = mysqli_fetch_array($run_cid)) {
+                            $city = $row_cid['nome_cid'];
+                           
+                            $cidade_plugin = $geoplugin->city;
+                               if($city == $cidade_plugin){  
+                                $_SESSION['id_cidade'] = $id_cid;
+                                $_SESSION['nome_cidade'] = $city; 
+                              }
+
 ?>
 <html>
 <head>
@@ -23,7 +41,7 @@
 <body>
     <div class="l-wrapper">
         <div class='l-header-top'>
-            <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
+           <p class='txtCupon'>20% de desconto em toda a loja | Código: OGOFERS13</p>
         </div>
         <div class="l-header">
             <h1 class="nomeEmpresa"><a class="linkEmpresa" href="index.php">MarketViser</a></h1>
@@ -35,13 +53,7 @@
                         </button>
                 </form>
             </div>
-            <div class="cidadeArmazem">
-                <i class="fas fa-globe-americas"></i>
-                <select name="cidadeArmazem" id="cidadeArmazem">
-                    <optgroup label="Escolha uma cidade">
- </optgroup>
-                </select>
-            </div>    
+    
         </div>
         <div class="l-header-bottom" id="headerSticky">
                 <ul class="usuarioHeader">
@@ -164,12 +176,25 @@
         </div>
         <div class="l-main">
             <?php carrinho(); ?>
-            <h2 class="tituloOfertas">OFERTAS IMPERDÍVEIS!</h2>
+
+            <h2 class="tituloOfertas"> <?php  
+          if (!empty($_SESSION['nome_cidade'])) {
+             $cidade =  "OFERTAS IMPERDÍVEIS EM ".$_SESSION['nome_cidade'];
+          }
+
+
+           echo $cidade;
+             ?></h2>
             <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
             <?php
                 $product_array = $db_handle->runQuery("SELECT * FROM produtos ORDER BY RAND() LIMIT 0,12");
-                if (!empty($product_array)) { 
+            
+        
                     foreach($product_array as $key=>$value){
+
+                      if ($product_array[$key]['armazem_id'] == $_SESSION["id_cidade"]) {                      
+                      if ($product_array[$key]['quantidade'] > 0) {
+              
             ?>
                 <div class='produto_thumb'>
                     <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]['code']; ?>&add_carrinho=<?php echo $product_array[$key]['produto_id']; ?>">
@@ -196,7 +221,10 @@
                 </div>
             <?php
                     }
+
                 }
+            
+        }
 
             
             ?>
