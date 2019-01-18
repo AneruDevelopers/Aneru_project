@@ -20,10 +20,8 @@
                            
                             $cidade_plugin = $geoplugin->city;
                                // if($city == $cidade_plugin){  
-                                $_SESSION['id_cidade'] =  1;//$id_cid;
+                                $_SESSION['id_cidade'] =  3;//$id_cid;
                                 $_SESSION['nome_cidade'] = "nome_cidade";//$city; 
-
-
 
                               // }
 
@@ -266,5 +264,4 @@
     
     </script>
 </body>
->>>>>>> e41019db7027fe573b2b4721ec660fea3760cc27
 </html>

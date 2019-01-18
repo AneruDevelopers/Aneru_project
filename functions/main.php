@@ -157,23 +157,9 @@ if(mysqli_connect_errno()) {
     function carrinho() {
 
         if(isset($_GET['add_carrinho'])) {
+            
             global $conn;
             global $con;
-        $cd = $_GET["code"];
-        $pro_select = "SELECT * FROM produtos WHERE code = '$cd' ";
-
-        $run_pro = mysqli_query($con, $pro_select);
-
-        while($p_pro=mysqli_fetch_array($run_pro)) {
-         $q =  $p_pro["quantidade"];
-         
-       }
-       $qu = $_POST["quantity"];
-
-       $c = $q - $qu;
-        $sql = 'UPDATE produtos SET quantidade=:q WHERE code = :c';
-        $statement = $conn ->prepare($sql);
-        $statement->execute([':q' => $c, 'c' => $cd]);
 
             $ip = busca_ip();
 
@@ -188,7 +174,7 @@ if(mysqli_connect_errno()) {
             if(mysqli_num_rows($run_check)>0) {
                 echo "";
             } else {
-                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','$q')";
+                $insere_pro = "INSERT INTO carrinho (id_pro,end_ip,quant) VALUES ('$pro_id','$ip','$quant')";
 
                 $run_pro = mysqli_query($con, $insere_pro);
 
