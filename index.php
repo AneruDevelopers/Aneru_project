@@ -23,6 +23,8 @@
                                 $_SESSION['id_cidade'] = $id_cid;
                                 $_SESSION['nome_cidade'] = $city; 
                               }
+                             }
+                            }
 
 ?>
 <html>
@@ -180,10 +182,10 @@
             <h2 class="tituloOfertas">
             <?php  
                 if (!empty($_SESSION['nome_cidade'])) {
-                    $cidade =  "OFERTAS IMPERDÍVEIS EM ".$_SESSION['nome_cidade'];
+                    $cidade =  "OFERTAS IMPERDÍVEIS NA REGIÃO DE ".$_SESSION['nome_cidade'];
                 }
                 echo $cidade;
-             ?>
+            ?>
             </h2>
             <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
             <?php

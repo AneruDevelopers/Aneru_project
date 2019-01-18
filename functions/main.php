@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","aneru");
+$con = mysqli_connect("localhost","root","senhadopedro","aneru");
 
 if(mysqli_connect_errno()) {
     echo "ERRO: " . mysqli_connect_error();
@@ -8,10 +8,10 @@ if(mysqli_connect_errno()) {
 
         $host = 'mysql:host=localhost;dbname=aneru';
         $nome = 'root';
-        $senha = '';
+        $senha = 'senhadopedro';
        
         try {
-        $conn = new PDO($host, $nome, $senha);
+            $conn = new PDO($host, $nome, $senha);
         } catch(PDOException $e) {
 
         }
@@ -20,7 +20,7 @@ if(mysqli_connect_errno()) {
     class DBController {
         private $host = "localhost";
         private $user = "root";
-        private $password = "";
+        private $password = "senhadopedro";
         private $database = "aneru";
         private $conn;
         

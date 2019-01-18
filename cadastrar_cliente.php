@@ -80,9 +80,21 @@
     
         $run_c = mysqli_query($con, $insere_c);
 
-        if($run_c) {
+        $seleciona_carrinho = "SELECT FROM carrinho WHERE end_ip ='ip'";
 
-            echo "<script>alert('Registrado com sucesso')</script>";
+        $run_cart = mysqli_query($con, $seleciona_carrinho);
+
+        $check_cart = mysqli_num_rows($run_cart);
+
+        if($check_cart==0) {
+
+            $_SESSION['cliente_email.php'] = $c_email;
+            echo "<script>alert('Registro feito com sucesso!')</script>";
+            echo "<script>window.open('cliente/minha_conta.php','_self')</script>";
+        } else {
+
+            $_SESSION['cliente_email.php'] = $c_email;
+            echo "<script>alert('Registro feito com sucesso!')</script>";
             echo "<script>window.open('checkout.php','_self')</script>";
         }
 }

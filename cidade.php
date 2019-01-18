@@ -1,32 +1,35 @@
 <?php 
-include("functions/main.php");
-session_start();
+    session_start();
+    include("functions/main.php");
+
 if (!empty($_GET['esc_cid'])) {
 
-	$t =$_GET['esc_cid'];
-                            $cid = "SELECT * FROM cidade WHERE id_cid = '$t'";
+    $t = $_GET['esc_cid'];
 
-                            $cid_r = mysqli_query($con, $cid);
+    $cid = "SELECT * FROM cidade WHERE id_cid = '$t'";
 
-                            while ($row_c = mysqli_fetch_array($cid_r)) {
-                            $nome = $row_c['nome_cid'];
-                            }
-					$_SESSION['id_cidade'] = $_GET['esc_cid'];
-                    $_SESSION['nome_cidade'] = $nome;
-                  if (!empty($_SESSION['id_cidade'])) {
-                  		header('Location: index.php');
-                  	}	
+    $cid_r = mysqli_query($con, $cid);
+
+    while ($row_c = mysqli_fetch_array($cid_r)) {
+
+        $nome = $row_c['nome_cid'];
+    }
+    
+    $_SESSION['id_cidade'] = $_GET['esc_cid'];
+    $_SESSION['nome_cidade'] = $nome;
+    
+    if (!empty($_SESSION['id_cidade'])) {
+        
+        header('Location: index.php');
+    }	
 }
-
-
  
- ?>
+?>
 
 <h1 align="center">Desculpe o único estado que estamos Funcionando em São Paulo</h1>
 
          <div align="center">      
-         <form method="get" action="">
-
+            <form method="get" action="">
                <select  name="esc_cid"   tabindex="1">
                     <optgroup label="Escolha uma Cidade">
                      <?php
@@ -48,9 +51,8 @@ if (!empty($_GET['esc_cid'])) {
                         </optgroup>
                 </select>
 			</form>
-
-             </div>
+        </div>
 	
 </select>
-
-</body></html>
+</body>
+</html>
