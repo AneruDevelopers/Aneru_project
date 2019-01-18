@@ -19,10 +19,16 @@
                             $city = $row_cid['nome_cid'];
                            
                             $cidade_plugin = $geoplugin->city;
-                               if($city == $cidade_plugin){  
-                                $_SESSION['id_cidade'] = $id_cid;
-                                $_SESSION['nome_cidade'] = $city; 
-                              }
+                               // if($city == $cidade_plugin){  
+                                $_SESSION['id_cidade'] =  1;//$id_cid;
+                                $_SESSION['nome_cidade'] = "nome_cidade";//$city; 
+
+
+
+                              // }
+
+                          }
+                      }
 
 ?>
 <html>
@@ -177,14 +183,14 @@
         <div class="l-main">
             <?php carrinho(); ?>
 
-            <h2 class="tituloOfertas">
-            <?php  
-                if (!empty($_SESSION['nome_cidade'])) {
-                    $cidade =  "OFERTAS IMPERDÍVEIS EM ".$_SESSION['nome_cidade'];
-                }
-                echo $cidade;
-             ?>
-            </h2>
+            <h2 class="tituloOfertas"> <?php  
+          if (!empty($_SESSION['nome_cidade'])) {
+             $cidade =  "OFERTAS IMPERDÍVEIS EM ".$_SESSION['nome_cidade'];
+          }
+
+
+           echo $cidade;
+             ?></h2>
             <div class="owl-carousel owl-theme sectionSlideProd owl-dots owl-item">
             <?php
                 $product_array = $db_handle->runQuery("SELECT * FROM produtos ORDER BY RAND() LIMIT 0,12");
